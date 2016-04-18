@@ -41,6 +41,7 @@
     "ember-data": "^2.5.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
+    "ember-one-way-controls": "0.6.1",
     "ember-resolver": "^2.0.3",
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-babel": "^3.2.0",
