@@ -41,6 +41,7 @@
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^1.4.0",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.0.1",
+    "lodash.merge": "^4.3.5"
   }
 }
