@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('time-entry', 'Unit | Model | time entry', {
+moduleForModel('tag', 'Unit | Model | tag', {
   needs: [
-    'model:tag'
+    'model:time-entry'
   ]
 });
 
