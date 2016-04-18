@@ -1,6 +1,6 @@
 import { Adapter } from 'ember-pouch';
 import PouchDB from 'pouchdb';
-import config from 'mate/config/environment';
+import config from 'time-tracker/config/environment';
 
 function setupDb() {
   let localDb = new PouchDB(config.emberPouch.localDb);
