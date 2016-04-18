@@ -12,6 +12,8 @@ module.exports = {
     // LOG_VIEW_LOOKUPS: true
   },
 
+  exportApplicationGlobal: true,
+
   emberPouch: {
     remoteDb: 'http://localhost:5984/time-tracker'
   }
