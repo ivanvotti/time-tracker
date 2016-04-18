@@ -10,5 +10,9 @@ module.exports = {
     // LOG_TRANSITIONS_INTERNAL: true,
     // LOG_ACTIVE_GENERATION: true,
     // LOG_VIEW_LOOKUPS: true
+  },
+
+  emberPouch: {
+    remoteDb: 'http://localhost:5984/time-tracker'
   }
 };

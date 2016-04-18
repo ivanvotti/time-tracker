@@ -5,5 +5,9 @@
 module.exports = {
   modulePrefix: 'time-tracker',
   podModulePrefix: 'time-tracker/pods',
-  locationType: 'auto'
+  locationType: 'auto',
+
+  emberPouch: {
+    localDb: 'time-tracker'
+  }
 };
