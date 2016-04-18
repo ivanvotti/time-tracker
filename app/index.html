@@ -15,6 +15,17 @@
     {{content-for "head-footer"}}
   </head>
   <body>
+    <script>
+      var ajax = new XMLHttpRequest();
+      ajax.open('GET', 'assets/icons.svg', true);
+      ajax.send();
+      ajax.onload = function(e) {
+        var div = document.createElement('div');
+        div.innerHTML = ajax.responseText;
+        document.body.insertBefore(div, document.body.childNodes[0]);
+      };
+    </script>
+
     {{content-for "body"}}
 
     <script src="assets/vendor.js"></script>

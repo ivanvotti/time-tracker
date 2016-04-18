@@ -36,6 +36,7 @@
     "ember-cli-sass": "5.3.1",
     "ember-cli-scss-lint": "1.0.0",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-svgstore": "0.2.2",
     "ember-cli-template-lint": "0.3.5",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "0.21.1",
