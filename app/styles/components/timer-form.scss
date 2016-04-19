@@ -4,7 +4,7 @@
   height: 40px;
   margin-top: 40px;
 
-  background: white;
+  background-color: white;
 }
 
 .c-timer-form__input {
@@ -27,16 +27,31 @@
   font-size: 14px;
   text-transform: uppercase;
 
-  color: white;
+  color: $btn-primary-color;
   border: 0;
   border-radius: 0 4px 4px 0;
-  background: color(blue);
+  background-color: $btn-primary-bg;
   transition: background-color 0.2s ease-in-out;
 
   cursor: pointer;
 
-  &:active,
   &:hover {
-    background-color: color(blue, dark);
+    background-color: darken($btn-primary-bg, 4%);
+  }
+
+  &:active {
+    box-shadow: $btn-active-box-shadow;
+  }
+
+  &.is-busy {
+    opacity: 0.8;
+
+    &:hover {
+      background-color: $btn-primary-bg;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
   }
 }
