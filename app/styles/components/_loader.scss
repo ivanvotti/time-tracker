@@ -1,0 +1,86 @@
+/**
+  Loading indicator
+
+  Usage:
+  <div class="c-loader">Loading...</div>
+  <div class="c-loader c-loader--white">...</div>
+*/
+
+$loader-color: color(gray, dark) !default;
+$loader-size: 6px !default;
+$loader-speed: 0.9s !default;
+
+.c-loader {
+  display: inline-block;
+  position: relative;
+  width: $loader-size;
+  height: $loader-size;
+  margin: ($loader-size * 2) 0;
+
+  font-size: 0;
+
+  color: transparent;
+  border-radius: 100%;
+  background-color: rgba($loader-color, 0.3);
+  animation-delay: ($loader-speed / 3);
+
+  &,
+  &::after,
+  &::before {
+    animation-name: loaderFade;
+    animation-duration: $loader-speed;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    vertical-align: middle;
+    position: absolute;
+    width: $loader-size;
+    height: $loader-size;
+
+    border-radius: 100%;
+    background-color: rgba($loader-color, 0.3);
+  }
+
+  &::before {
+    right: 100%;
+    margin-right: $loader-size;
+  }
+
+  &::after {
+    left: 100%;
+    margin-left: $loader-size;
+
+    animation-delay: (($loader-speed / 3) * 2);
+  }
+}
+
+@keyframes loaderFade {
+  50% {
+    background-color: rgba($loader-color, 1);
+  }
+
+  0%, 100% {
+    background-color: rgba($loader-color, 0.3);
+  }
+}
+
+.c-loader--white,
+.c-loader--white::after,
+.c-loader--white::before {
+  background-color: rgba(255,255,255,0.3);
+  animation-name: loaderFadeWhite;
+}
+
+@keyframes loaderFadeWhite {
+  50% {
+    background-color: rgba(255,255,255,1);
+  }
+
+  0%, 100% {
+    background-color: rgba(255,255,255,0.3);
+  }
+}
