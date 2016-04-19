@@ -1,0 +1,42 @@
+.c-timer-form {
+  display: flex;
+  align-items: stretch;
+  height: 40px;
+  margin-top: 40px;
+
+  background: white;
+}
+
+.c-timer-form__input {
+  flex-grow: 1;
+  padding: 10px;
+
+  border: 1px solid color(gray, light);
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    border-color: color(blue);
+  }
+}
+
+.c-timer-form__button {
+  width: 90px;
+
+  font-size: 14px;
+  text-transform: uppercase;
+
+  color: white;
+  border: 0;
+  border-radius: 0 4px 4px 0;
+  background: color(blue);
+  transition: background-color 0.2s ease-in-out;
+
+  cursor: pointer;
+
+  &:active,
+  &:hover {
+    background-color: color(blue, dark);
+  }
+}

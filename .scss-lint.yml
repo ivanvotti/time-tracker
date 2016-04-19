@@ -230,12 +230,10 @@ linters:
       - opacity
       -
       - caption-side
-      -
       - cursor
       - empty-cells
       - pointer-events
       - appearance
-      -
       - quotes
       - speak
     ignore_unspecified: true

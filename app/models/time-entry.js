@@ -4,7 +4,7 @@ import Model from 'ember-pouch/model';
 const { attr, hasMany } = DS;
 
 export default Model.extend({
-  title: attr('string'),
+  name: attr('string'),
   duration: attr('number'),
   startedAt: attr('date'),
   stoppedAt: attr('date'),

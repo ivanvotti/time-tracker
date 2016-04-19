@@ -1,0 +1,16 @@
+<div class="c-timer-form">
+  {{one-way-input
+      class="c-timer-form__input"
+      placeholder="What are you doing?"
+      value=entryName
+      update=(action (mut entryName))
+      onenter=(action "submitForm")
+  }}
+
+  <button
+    class="c-timer-form__button"
+    {{action "submitForm"}}
+  >
+    Start
+  </button>
+</div>

@@ -3,9 +3,14 @@
 */
 
 $wrap-width: 990px !default;
+$wrap-width-small: 600px !default;
 
 .o-wrap {
   display: block;
   max-width: $wrap-width;
   margin: 0 auto;
+
+  &--small {
+    max-width: $wrap-width-small;
+  }
 }
