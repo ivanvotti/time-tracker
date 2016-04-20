@@ -2,14 +2,14 @@
   {{one-way-input
       class="c-timer-form__input"
       placeholder="What are you doing?"
-      value=entryName
-      update=(action (mut entryName))
-      onenter=(action "submitForm")
+      value=timeEntryName
+      update=(action (mut timeEntryName))
+      onenter=(perform submitFormTask)
   }}
 
   <button
     class="c-timer-form__button {{if submitFormTask.isRunning 'is-busy'}}"
-    {{action "submitForm"}}
+    {{action (perform submitFormTask)}}
   >
     Start
   </button>

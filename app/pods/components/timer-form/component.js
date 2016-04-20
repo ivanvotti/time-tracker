@@ -3,20 +3,14 @@ import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   submitFormTask: task(function* () {
-    let entryName = this.get('entryName');
+    let timeEntryName = this.get('timeEntryName');
 
-    if (!entryName) {
+    if (!timeEntryName) {
       return;
     }
 
-    yield this.attrs.addNewEntry(entryName);
+    yield this.attrs.submit(timeEntryName);
 
-    this.set('entryName', '');
-  }).drop(),
-
-  actions: {
-    submitForm() {
-      this.get('submitFormTask').perform();
-    }
-  }
+    this.set('timeEntryName', '');
+  }).drop()
 });

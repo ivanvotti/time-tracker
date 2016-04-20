@@ -1,0 +1,10 @@
+<div class="o-wrap o-wrap--small">
+  {{timer-form submit=(action "startNewTimer")}}
+
+  {{#each timeEntries as |timeEntry|}}
+    <div>
+      {{timeEntry.name}}
+      {{timeEntry.startedAt}}
+    </div>
+  {{/each}}
+</div>

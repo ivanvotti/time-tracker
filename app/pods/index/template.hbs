@@ -1,10 +1,4 @@
-<div class="o-wrap o-wrap--small">
-  {{timer-form addNewEntry=(route-action "addNewEntry")}}
-
-  {{#each model as |timeEntry|}}
-    <div>
-      {{timeEntry.name}}
-      {{timeEntry.startedAt}}
-    </div>
-  {{/each}}
-</div>
+{{main-screen
+    timeEntries=model
+    addTimeEntry=(route-action "addTimeEntry")
+}}
