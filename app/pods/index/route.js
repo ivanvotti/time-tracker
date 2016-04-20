@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 export default Ember.Route.extend({
   model() {
@@ -15,7 +16,14 @@ export default Ember.Route.extend({
     },
 
     stopTimeEntry(timeEntry) {
-      timeEntry.set('stoppedAt', new Date());
+      let startedAt = timeEntry.get('startedAt');
+      let stoppedAt = new Date();
+      let duration = moment(stoppedAt).diff(startedAt, 'seconds');
+
+      timeEntry.setProperties({
+        stoppedAt,
+        duration
+      });
       return timeEntry.save();
     }
   }
