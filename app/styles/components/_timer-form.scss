@@ -31,7 +31,8 @@
   border: 0;
   border-radius: 0 4px 4px 0;
   background-color: $btn-primary-bg;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color, opacity 0.2s ease-in-out;
+  user-select: none;
 
   cursor: pointer;
 
@@ -43,8 +44,10 @@
     box-shadow: $btn-active-box-shadow;
   }
 
-  &.is-busy {
+  &.is-disabled {
     opacity: 0.8;
+
+    pointer-events: none;
 
     &:hover {
       background-color: $btn-primary-bg;

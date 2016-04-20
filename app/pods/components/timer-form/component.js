@@ -1,16 +1,23 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  submitFormTask: task(function* () {
-    let timeEntryName = this.get('timeEntryName');
+const { computed } = Ember;
 
-    if (!timeEntryName) {
+export default Ember.Component.extend({
+  isValid: computed.notEmpty('timeEntryName'),
+  isInvalid: computed.not('isValid'),
+  isDisabled: computed.or('submitFormTask.isRunning', 'isInvalid'),
+
+  resetForm() {
+    this.set('timeEntryName', '');
+  },
+
+  submitFormTask: task(function* () {
+    if (this.get('isInvalid')) {
       return;
     }
 
-    yield this.attrs.submit(timeEntryName);
-
-    this.set('timeEntryName', '');
+    yield this.attrs.submit(this.get('timeEntryName'));
+    this.resetForm();
   }).drop()
 });

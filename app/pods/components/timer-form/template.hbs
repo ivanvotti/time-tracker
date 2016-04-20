@@ -8,7 +8,7 @@
   }}
 
   <button
-    class="c-timer-form__button {{if submitFormTask.isRunning 'is-busy'}}"
+    class="c-timer-form__button {{if isDisabled 'is-disabled'}}"
     {{action (perform submitFormTask)}}
   >
     Start
