@@ -7,7 +7,8 @@ module.exports = function(defaults) {
     },
 
     babel: {
-      includePolyfill: true
+      includePolyfill: true,
+      optional: ['es7.decorators']
     },
 
     svgstore: {
