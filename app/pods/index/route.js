@@ -12,6 +12,11 @@ export default Ember.Route.extend({
         startedAt: new Date()
       })
       .save();
+    },
+
+    stopTimeEntry(timeEntry) {
+      timeEntry.set('stoppedAt', new Date());
+      return timeEntry.save();
     }
   }
 });

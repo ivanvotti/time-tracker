@@ -1,7 +1,16 @@
 <div class="o-wrap o-wrap--small">
   {{timer-form submit=(action "startNewTimer")}}
 
-  {{#each timeEntries as |timeEntry|}}
+  {{#if currentTimer}}
+    <div>
+      {{currentTimer.name}}
+      <button {{action (action this.attrs.stopTimeEntry currentTimer)}}>
+        stop
+      </button>
+    </div>
+  {{/if}}
+
+  {{#each sortedStoppedTimeEntries as |timeEntry|}}
     <div>
       {{timeEntry.name}}
       {{timeEntry.startedAt}}
