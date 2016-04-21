@@ -42,7 +42,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "0.21.1",
     "ember-computed-decorators": "0.2.2",
-    "ember-concurrency": "0.6.0",
+    "ember-concurrency": "0.6.1",
     "ember-data": "^2.5.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
