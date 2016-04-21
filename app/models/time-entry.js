@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import computed from 'ember-computed-decorators';
 import Model from 'ember-pouch/model';
+import moment from 'moment';
 
 const { notEmpty } = Ember.computed;
 const { attr, hasMany } = DS;
@@ -30,5 +31,13 @@ export default Model.extend({
   @computed('duration')
   durationDisplay(duration) {
     return formatTime(duration);
+  },
+
+  @computed('startedAt', 'stoppedAt')
+  startedStoppedDisplay(startedAt, stoppedAt) {
+    let startedAtDisplay = moment(startedAt).format('h:mm a');
+    let stoppedAtDisplay = moment(stoppedAt).format('h:mm a');
+
+    return `${startedAtDisplay} – ${stoppedAtDisplay}`;
   }
 });

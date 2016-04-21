@@ -1,0 +1,63 @@
+.c-current-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  margin-bottom: 20px;
+  padding: 0 12px;
+
+  border: 1px solid #d6dcde;
+  border-radius: 4px;
+  background-color: #effaff;
+}
+
+.c-current-timer__left-side {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+
+.c-current-timer__right-side {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.c-current-timer__name {
+  @include text-truncate();
+  margin-right: 10px;
+
+  font-size: 14px;
+
+  color: color(gray);
+}
+
+.c-current-timer__duration {
+  font-size: 14px;
+
+  color: color(gray);
+}
+
+.c-current-timer__button {
+  margin-left: 10px;
+  padding: 1px 10px;
+
+  font-size: 12px;
+
+  color: $btn-primary-color;
+  border: 0;
+  border-radius: 4px;
+  background-color: color(grey, medium);
+  transition: background-color, opacity 0.2s ease-in-out;
+  user-select: none;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: color(grey);
+  }
+
+  &:active {
+    box-shadow: $btn-active-box-shadow;
+  }
+}

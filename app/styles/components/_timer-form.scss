@@ -1,8 +1,9 @@
 .c-timer-form {
   display: flex;
   align-items: stretch;
-  height: 40px;
+  height: 44px;
   margin-top: 40px;
+  margin-bottom: 26px;
 
   background-color: white;
 }
@@ -22,7 +23,7 @@
 }
 
 .c-timer-form__button {
-  width: 90px;
+  width: 100px;
 
   font-size: 14px;
   text-transform: uppercase;

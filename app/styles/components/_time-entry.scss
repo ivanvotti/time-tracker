@@ -1,0 +1,61 @@
+.c-time-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 0 8px;
+
+  border-bottom: 1px solid color(gray, light);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.c-time-entry__left-side {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+
+.c-time-entry__right-side {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.c-time-entry__name {
+  @include text-truncate();
+  margin-right: 8px;
+
+  font-size: 14px;
+
+  color: color(gray);
+}
+
+.c-time-entry__tag {
+  @include text-truncate();
+  margin-right: 6px;
+  padding: 0 8px;
+
+  font-size: 11px;
+
+  color: color(gray, medium);
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+}
+
+.c-time-entry__time {
+  margin-right: 18px;
+
+  font-size: 11px;
+  text-transform: uppercase;
+
+  color: color(gray, medium);
+}
+
+.c-time-entry__duration {
+  font-size: 14px;
+
+  color: color(gray);
+}

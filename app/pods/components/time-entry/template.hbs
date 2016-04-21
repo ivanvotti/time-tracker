@@ -1,0 +1,21 @@
+<div class="c-time-entry__left-side">
+  <div class="c-time-entry__name">
+    {{timeEntry.name}}
+  </div>
+
+  {{#each timeEntry.tags as |tag|}}
+    <div class="c-time-entry__tag">
+      {{tag.name}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="c-time-entry__right-side">
+  <div class="c-time-entry__time">
+    {{timeEntry.startedStoppedDisplay}}
+  </div>
+
+  <div class="c-time-entry__duration">
+    {{timeEntry.durationDisplay}}
+  </div>
+</div>
