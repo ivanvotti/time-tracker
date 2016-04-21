@@ -1,7 +1,7 @@
 <div class="o-wrap o-wrap--small">
   {{timer-form submit=(action "startNewTimer")}}
 
-  {{current-timer
+  {{current-entry
       timeEntry=currentTimeEntry
       stopTimer=(action this.attrs.stopTimeEntry currentTimeEntry)
   }}

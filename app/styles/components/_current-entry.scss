@@ -1,4 +1,4 @@
-.c-current-timer {
+.c-current-entry {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,19 +11,19 @@
   background-color: #effaff;
 }
 
-.c-current-timer__left-side {
+.c-current-entry__left-side {
   display: flex;
   overflow: hidden;
   align-items: center;
 }
 
-.c-current-timer__right-side {
+.c-current-entry__right-side {
   display: flex;
   flex-shrink: 0;
   align-items: center;
 }
 
-.c-current-timer__name {
+.c-current-entry__name {
   @include text-truncate();
   margin-right: 10px;
 
@@ -32,14 +32,15 @@
   color: color(gray);
 }
 
-.c-current-timer__duration {
-  font-size: 14px;
+.c-current-entry__duration {
+  margin-right: 20px;
+
+  font-size: 13px;
 
   color: color(gray);
 }
 
-.c-current-timer__button {
-  margin-left: 10px;
+.c-current-entry__button {
   padding: 1px 10px;
 
   font-size: 12px;
