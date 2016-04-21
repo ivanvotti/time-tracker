@@ -39,6 +39,7 @@ module.exports = {
       'named': 'never'
     }],
     'prefer-rest-params': 0,
-    'array-callback-return': 0
+    'array-callback-return': 0,
+    'no-constant-condition': 0
   }
 };

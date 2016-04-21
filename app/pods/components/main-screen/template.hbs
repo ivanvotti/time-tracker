@@ -1,29 +1,10 @@
 <div class="o-wrap o-wrap--small">
   {{timer-form submit=(action "startNewTimer")}}
 
-  {{#if currentTimer}}
-    <div class="c-current-timer">
-      <div class="c-current-timer__left-side">
-        <div class="c-current-timer__name">
-          {{currentTimer.name}}
-        </div>
-      </div>
-
-      <div class="c-current-timer__right-side">
-        <div class="c-current-timer__time">
-          {{currentTimer.durationDisplay}}
-        </div>
-
-        <div class="c-current-timer__duration">
-          <button
-            class="c-current-timer__button"
-            {{action (action this.attrs.stopTimeEntry currentTimer)}}>
-            stop
-          </button>
-        </div>
-      </div>
-    </div>
-  {{/if}}
+  {{current-timer
+      timeEntry=currentTimeEntry
+      stopTimer=(action this.attrs.stopTimeEntry currentTimeEntry)
+  }}
 
   {{time-entry-list timeEntries=timeEntries}}
 </div>

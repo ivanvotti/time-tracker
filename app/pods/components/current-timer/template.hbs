@@ -1,0 +1,23 @@
+{{#if timeEntry}}
+  <div class="c-current-timer">
+    <div class="c-current-timer__left-side">
+      <div class="c-current-timer__name">
+        {{timeEntry.name}}
+      </div>
+    </div>
+
+    <div class="c-current-timer__right-side">
+      <div class="c-current-timer__time">
+        {{durationDisplay}}
+      </div>
+
+      <div class="c-current-timer__duration">
+        <button
+          class="c-current-timer__button"
+          {{action stopTimer}}>
+          stop
+        </button>
+      </div>
+    </div>
+  </div>
+{{/if}}

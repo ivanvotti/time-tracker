@@ -5,19 +5,19 @@ export default Ember.Component.extend({
   timeEntries: null,
 
   @computed('timeEntries.@each.isStopped')
-  currentTimer(timeEntries) {
+  currentTimeEntry(timeEntries) {
     return timeEntries && timeEntries.findBy('isStopped', false);
   },
 
   actions: {
-    async startNewTimer(timeEntryName) {
-      let currentTimer = this.get('currentTimer');
+    async startNewTimer(newEntryName) {
+      let currentTimeEntry = this.get('currentTimeEntry');
 
-      if (currentTimer) {
-        await this.attrs.stopTimeEntry(currentTimer);
+      if (currentTimeEntry) {
+        await this.attrs.stopTimeEntry(currentTimeEntry);
       }
 
-      return this.attrs.addTimeEntry(timeEntryName);
+      return this.attrs.addTimeEntry(newEntryName);
     }
   }
 });
