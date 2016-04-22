@@ -22,6 +22,7 @@
     "babel-eslint": "^6.0.2",
     "broccoli-asset-rev": "^2.4.2",
     "ember-ajax": "0.7.1",
+    "ember-autoserve": "github:ivanvotti/ember-autoserve",
     "ember-cli": "2.5.0",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-autoprefixer": "0.6.0",
