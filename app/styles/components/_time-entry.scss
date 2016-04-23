@@ -30,7 +30,11 @@
 
   font-size: 14px;
 
-  color: color(gray);
+  color: color(gray, medium);
+
+  .c-time-entry--current & {
+    color: color(gray);
+  }
 }
 
 .c-time-entry__tag {
@@ -57,5 +61,35 @@
 .c-time-entry__duration {
   font-size: 14px;
 
-  color: color(gray);
+  color: color(gray, medium);
+
+  .c-time-entry--current & {
+    font-weight: 600;
+
+    color: color(gray);
+  }
+}
+
+.c-time-entry__stop-button {
+  margin-right: 18px;
+  padding: 1px 10px;
+
+  font-size: 12px;
+
+  color: $btn-primary-color;
+  border: 0;
+  border-radius: 4px;
+  background-color: color(grey, medium);
+  transition: background-color, opacity 0.2s ease-in-out;
+  user-select: none;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: color(grey);
+  }
+
+  &:active {
+    box-shadow: $btn-active-box-shadow;
+  }
 }

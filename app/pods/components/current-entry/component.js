@@ -7,6 +7,7 @@ import formatDuration from 'time-tracker/utils/format-duration';
 export default Ember.Component.extend({
   timeEntry: null,
   duration: 0,
+  classNames: ['c-time-entry', 'c-time-entry--current'],
 
   @computed('duration')
   durationDisplay(duration) {
