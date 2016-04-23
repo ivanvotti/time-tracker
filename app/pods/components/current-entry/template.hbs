@@ -14,13 +14,15 @@
 </div>
 
 <div class="c-time-entry__right-side">
-  <button
-    class="c-time-entry__stop-button"
-    {{action stopTimer}}>
-    stop
-  </button>
-
   <div class="c-time-entry__duration">
     {{durationDisplay}}
   </div>
+
+  <button
+    class="c-time-entry__button"
+    title="Stop timer"
+    {{action stopTimer}}
+  >
+    <svg class="c-svg-icon"><use xlink:href="#icon-stop"></use></svg>
+  </button>
 </div>
