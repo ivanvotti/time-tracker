@@ -1,24 +1,26 @@
-{{#if timeEntry}}
-  {{title timeEntry.name}}
-  {{title durationDisplay}}
+{{title timeEntry.name}}
+{{title durationDisplay}}
 
-  <div class="c-current-entry">
-    <div class="c-current-entry__left-side">
-      <div class="c-current-entry__name">
-        {{timeEntry.name}}
-      </div>
-    </div>
-
-    <div class="c-current-entry__right-side">
-      <div class="c-current-entry__duration">
-        {{durationDisplay}}
-      </div>
-
-      <button
-        class="c-current-entry__button"
-        {{action stopTimer}}>
-        stop
-      </button>
-    </div>
+<div class="c-time-entry__left-side">
+  <div class="c-time-entry__name">
+    {{timeEntry.name}}
   </div>
-{{/if}}
+
+  {{#each timeEntry.tags as |tag|}}
+    <div class="c-time-entry__tag">
+      {{tag.name}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="c-time-entry__right-side">
+  <button
+    class="c-time-entry__stop-button"
+    {{action stopTimer}}>
+    stop
+  </button>
+
+  <div class="c-time-entry__duration">
+    {{durationDisplay}}
+  </div>
+</div>

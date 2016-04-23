@@ -1,3 +1,10 @@
-{{#each sortedStoppedTimeEntries as |timeEntry|}}
-  {{time-entry timeEntry=timeEntry}}
+{{#each sortedTimeEntries as |timeEntry|}}
+  {{#if timeEntry.isStopped}}
+    {{time-entry timeEntry=timeEntry}}
+  {{else}}
+    {{current-entry
+        timeEntry=timeEntry
+        stopTimer=(action this.attrs.stopTimeEntry timeEntry)
+    }}
+  {{/if}}
 {{/each}}
