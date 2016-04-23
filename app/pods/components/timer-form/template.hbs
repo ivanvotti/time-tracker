@@ -9,7 +9,7 @@
 
   <button
     class="c-timer-form__button {{if isDisabled 'is-disabled'}}"
-    {{action (perform submitFormTask)}}
+    onclick={{perform submitFormTask}}
   >
     Start
   </button>

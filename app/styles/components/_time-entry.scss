@@ -59,6 +59,8 @@
 }
 
 .c-time-entry__duration {
+  margin-right: 18px;
+
   font-size: 14px;
 
   color: color(gray, medium);
@@ -71,7 +73,6 @@
 }
 
 .c-time-entry__button {
-  margin-left: 10px;
   padding: 0;
 
   line-height: 0;
@@ -87,5 +88,9 @@
   &:hover,
   &:active {
     color: color(blue);
+  }
+
+  &--start {
+    color: rgba(146,150,154,0.7);
   }
 }

@@ -15,6 +15,15 @@ export default Ember.Route.extend({
       .save();
     },
 
+    continueTimeEntry(sourceEntry) {
+      // TODO: copy tags as well
+      return this.store.createRecord('time-entry', {
+        name: sourceEntry.get('name'),
+        startedAt: new Date()
+      })
+      .save();
+    },
+
     stopTimeEntry(timeEntry) {
       let startedAt = timeEntry.get('startedAt');
       let stoppedAt = new Date();

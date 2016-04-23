@@ -18,4 +18,12 @@
   <div class="c-time-entry__duration">
     {{timeEntry.durationDisplay}}
   </div>
+
+  <button
+    class="c-time-entry__button c-time-entry__button--start"
+    title="Continue"
+    onclick={{action continueEntry}}
+  >
+    <svg class="c-svg-icon"><use xlink:href="#icon-start"></use></svg>
+  </button>
 </div>
