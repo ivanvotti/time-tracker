@@ -32,5 +32,10 @@ export default Model.extend({
     }
 
     return `${startedAtDisplay} – ${stoppedAtDisplay}`;
+  },
+
+  @computed('startedAt')
+  startedAtDisplay(startedAt) {
+    return moment(startedAt).format('dddd, MMMM Do');
   }
 });

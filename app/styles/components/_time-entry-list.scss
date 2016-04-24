@@ -1,3 +1,7 @@
+.c-time-entry-list {
+  margin-bottom: 26px;
+}
+
 .c-time-entry-list__header {
   display: flex;
   align-items: center;
@@ -10,7 +14,7 @@
 
   font-size: 18px;
 
-  color: color(gray, medium);
+  color: color(gray);
 }
 
 .c-time-entry-list__duration {
