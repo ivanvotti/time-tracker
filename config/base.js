@@ -20,5 +20,18 @@ module.exports = {
 
   emberPouch: {
     localDb: 'time-tracker'
+  },
+
+  serviceWorker: {
+    enabled: true,
+
+    networkFirstURLs: [
+      '/',
+      '/timer'
+    ],
+
+    swIncludeFiles: [
+      'bower_components/pouchdb/dist/pouchdb.js'
+    ]
   }
 };

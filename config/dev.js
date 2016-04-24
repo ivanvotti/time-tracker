@@ -24,5 +24,9 @@ module.exports = {
 
   emberPouch: {
     remoteDb: 'http://localhost:5984/time-tracker'
+  },
+
+  serviceWorker: {
+    debug: true
   }
 };
