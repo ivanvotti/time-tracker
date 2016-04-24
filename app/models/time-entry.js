@@ -25,7 +25,11 @@ export default Model.extend({
   @computed('startedAt', 'stoppedAt')
   startedStoppedDisplay(startedAt, stoppedAt) {
     let startedAtDisplay = moment(startedAt).format('h:mm a');
-    let stoppedAtDisplay = moment(stoppedAt).format('h:mm a');
+    let stoppedAtDisplay = 'now';
+
+    if (stoppedAt) {
+      stoppedAtDisplay = moment(stoppedAt).format('h:mm a');
+    }
 
     return `${startedAtDisplay} – ${stoppedAtDisplay}`;
   }
