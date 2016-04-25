@@ -8,6 +8,8 @@
   border-bottom: 1px solid color(gray, light);
   user-select: none;
 
+  cursor: default;
+
   &:last-child {
     border-bottom: 0;
   }

@@ -10,7 +10,14 @@
 
 <div class="c-time-entry__right-side">
   <button
-    class="c-button c-time-entry-form__button {{if isDisabled 'is-disabled'}}"
+    class="c-button c-button--danger c-time-entry-form__button"
+    onclick={{action deleteEntry}}
+  >
+    Delete
+  </button>
+
+  <button
+    class="c-button c-time-entry-form__button"
     onclick={{action closeForm}}
   >
     Cancel

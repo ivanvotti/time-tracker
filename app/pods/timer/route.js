@@ -40,6 +40,10 @@ export default Ember.Route.extend({
     updateEntry(timeEntry, data) {
       timeEntry.setProperties(data);
       return timeEntry.save();
+    },
+
+    deleteEntry(timeEntry) {
+      return timeEntry.destroyRecord();
     }
   }
 });
