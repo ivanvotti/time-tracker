@@ -20,14 +20,14 @@ export default Ember.Component.extend({
       return this.attrs.addNewEntry(newEntryName);
     },
 
-    async continueTimeEntry(timeEntry) {
+    async restartEntry(timeEntry) {
       let currentTimeEntry = this.get('currentTimeEntry');
 
       if (currentTimeEntry) {
         await this.attrs.stopEntry(currentTimeEntry);
       }
 
-      return this.attrs.continueTimeEntry(timeEntry);
+      return this.attrs.restartEntry(timeEntry);
     }
   }
 });

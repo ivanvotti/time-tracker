@@ -15,7 +15,7 @@ export default Ember.Route.extend({
       .save();
     },
 
-    continueTimeEntry(sourceEntry) {
+    restartEntry(sourceEntry) {
       // TODO: copy tags as well
       return this.store.createRecord('time-entry', {
         name: sourceEntry.get('name'),

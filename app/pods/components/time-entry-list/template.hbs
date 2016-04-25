@@ -13,7 +13,7 @@
       {{#if timeEntry.isEnded}}
         {{time-entry
             timeEntry=timeEntry
-            continueEntry=(action continueTimeEntry timeEntry)
+            restartEntry=(action restartEntry timeEntry)
         }}
       {{else}}
         {{current-entry
