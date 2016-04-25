@@ -12,26 +12,26 @@ export default Model.extend({
   name: attr('string'),
   duration: attr('number'),
   startedAt: attr('date'),
-  stoppedAt: attr('date'),
+  endedAt: attr('date'),
   tags: hasMany('tag'),
 
-  isStopped: notEmpty('stoppedAt'),
+  isEnded: notEmpty('endedAt'),
 
   @computed('duration')
   durationDisplay(duration) {
     return formatDuration(duration);
   },
 
-  @computed('startedAt', 'stoppedAt')
-  startedStoppedDisplay(startedAt, stoppedAt) {
+  @computed('startedAt', 'endedAt')
+  startedEndedDisplay(startedAt, endedAt) {
     let startedAtDisplay = moment(startedAt).format('h:mm a');
-    let stoppedAtDisplay = 'now';
+    let endedAtDisplay = 'now';
 
-    if (stoppedAt) {
-      stoppedAtDisplay = moment(stoppedAt).format('h:mm a');
+    if (endedAt) {
+      endedAtDisplay = moment(endedAt).format('h:mm a');
     }
 
-    return `${startedAtDisplay} – ${stoppedAtDisplay}`;
+    return `${startedAtDisplay} – ${endedAtDisplay}`;
   },
 
   @computed('startedAt')

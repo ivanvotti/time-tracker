@@ -10,7 +10,7 @@
     </div>
 
     {{#each timeEntries as |timeEntry|}}
-      {{#if timeEntry.isStopped}}
+      {{#if timeEntry.isEnded}}
         {{time-entry
             timeEntry=timeEntry
             continueEntry=(action continueTimeEntry timeEntry)
