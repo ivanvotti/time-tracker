@@ -7,6 +7,17 @@ module.exports = {
   podModulePrefix: 'time-tracker/pods',
   locationType: 'auto',
 
+  // https://github.com/rwjblue/ember-cli-content-security-policy
+  contentSecurityPolicy: {
+    'default-src': ["'none'"],
+    'script-src':  ["'self'", "'unsafe-inline'"],
+    'font-src': ["'self'", "data:"],
+    'connect-src': ["'self'"],
+    'img-src':     ["'self'"],
+    'style-src': ["'self'", "'unsafe-inline'"],
+    'media-src': null
+  },
+
   emberPouch: {
     localDb: 'time-tracker'
   }

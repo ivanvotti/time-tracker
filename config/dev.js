@@ -14,6 +14,14 @@ module.exports = {
 
   exportApplicationGlobal: true,
 
+  contentSecurityPolicy: {
+    'connect-src': [
+      "'self'",
+      "http://localhost:5984",
+      "http://localhost:49154"
+    ]
+  },
+
   emberPouch: {
     remoteDb: 'http://localhost:5984/time-tracker'
   }
