@@ -17,7 +17,7 @@ export default Ember.Component.extend({
         await this.attrs.stopTimeEntry(currentTimeEntry);
       }
 
-      return this.attrs.addTimeEntry(newEntryName);
+      return this.attrs.addNewEntry(newEntryName);
     },
 
     async continueTimeEntry(timeEntry) {

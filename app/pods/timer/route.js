@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    addTimeEntry(entryName) {
+    addNewEntry(entryName) {
       return this.store.createRecord('time-entry', {
         name: entryName,
         startedAt: new Date()
