@@ -1,30 +1,26 @@
-{{#each-in (group-by "startedAtDisplay" sortedTimeEntries) as |entryListTitle timeEntries|}}
-  {{!--
-    TODO: Remove the `toString` condition when the Ember's bug is fixed.
-    https://github.com/DockYard/ember-composable-helpers/issues/136
-    https://github.com/emberjs/ember.js/issues/13050
-  --}}
-  {{#if (not-eq entryListTitle 'toString')}}
-    <div class="c-time-entry-list">
-      <div class="c-time-entry-list__header">
-        <div class="c-time-entry-list__title">
-          {{entryListTitle}}
-        </div>
+{{#each-in
+    (group-by "startedAtDisplay" sortedTimeEntries)
+    as |entryListTitle timeEntries|
+}}
+  <div class="c-time-entry-list">
+    <div class="c-time-entry-list__header">
+      <div class="c-time-entry-list__title">
+        {{entryListTitle}}
       </div>
-
-      {{#each timeEntries as |timeEntry|}}
-        {{#if timeEntry.isStopped}}
-          {{time-entry
-              timeEntry=timeEntry
-              continueEntry=(action continueTimeEntry timeEntry)
-          }}
-        {{else}}
-          {{current-entry
-              timeEntry=timeEntry
-              stopEntry=(action stopTimeEntry timeEntry)
-          }}
-        {{/if}}
-      {{/each}}
     </div>
-  {{/if}}
+
+    {{#each timeEntries as |timeEntry|}}
+      {{#if timeEntry.isStopped}}
+        {{time-entry
+            timeEntry=timeEntry
+            continueEntry=(action continueTimeEntry timeEntry)
+        }}
+      {{else}}
+        {{current-entry
+            timeEntry=timeEntry
+            stopEntry=(action stopTimeEntry timeEntry)
+        }}
+      {{/if}}
+    {{/each}}
+  </div>
 {{/each-in}}
