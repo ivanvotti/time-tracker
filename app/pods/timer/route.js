@@ -35,6 +35,10 @@ export default Ember.Route.extend({
       });
 
       return timeEntry.save();
+    },
+
+    updateEntry(timeEntry, data) {
+      return timeEntry.setProperties(data).save();
     }
   }
 });
