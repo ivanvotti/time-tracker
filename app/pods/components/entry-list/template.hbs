@@ -1,0 +1,22 @@
+{{#each-in
+    (group-by "startedAtDisplay" sortedTimeEntries)
+    as |entryListTitle timeEntries|
+}}
+  <div class="c-time-entry-list">
+    <div class="c-time-entry-list__header">
+      <div class="c-time-entry-list__title">
+        {{entryListTitle}}
+      </div>
+    </div>
+
+    {{#each timeEntries as |timeEntry|}}
+      {{entry-item
+          tagName=""
+          timeEntry=timeEntry
+          restartEntry=(action restartEntry timeEntry)
+          updateEntry=(action updateEntry timeEntry)
+          stopEntry=(action stopEntry timeEntry)
+      }}
+    {{/each}}
+  </div>
+{{/each-in}}

@@ -1,0 +1,13 @@
+{{#if timeEntry.isEnded}}
+  {{entry-item-ended
+      tagName=""
+      timeEntry=timeEntry
+      restartEntry=restartEntry
+  }}
+{{else}}
+  {{entry-item-active
+      tagName=""
+      timeEntry=timeEntry
+      stopEntry=stopEntry
+  }}
+{{/if}}
