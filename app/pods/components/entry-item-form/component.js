@@ -4,11 +4,18 @@ import { task } from 'ember-concurrency';
 const { empty, or } = Ember.computed;
 
 export default Ember.Component.extend({
-  isInvalid: empty('timeEntryName'),
+  name: null,
+
+  isInvalid: empty('name'),
   isDisabled: or('submitFormTask.isRunning', 'isInvalid'),
 
-  resetForm() {
-    this.set('timeEntryName', '');
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.initFormValues();
+  },
+
+  initFormValues() {
+    this.set('name', this.get('timeEntry.name'));
   },
 
   submitFormTask: task(function* () {
@@ -16,7 +23,9 @@ export default Ember.Component.extend({
       return;
     }
 
-    yield this.attrs.submitForm(this.get('timeEntryName'));
-    this.resetForm();
+    let formData = this.getProperties('name');
+    yield this.attrs.submitForm(formData);
+
+    this.attrs.closeForm();
   }).drop()
 });

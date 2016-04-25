@@ -4,9 +4,9 @@ import computed from 'ember-computed-decorators';
 export default Ember.Component.extend({
   timeEntries: null,
 
-  @computed('timeEntries.@each.isEnded')
+  @computed('timeEntries.@each.isActive')
   activeTimeEntry(timeEntries) {
-    return timeEntries && timeEntries.findBy('isEnded', false);
+    return timeEntries && timeEntries.findBy('isActive', true);
   },
 
   actions: {

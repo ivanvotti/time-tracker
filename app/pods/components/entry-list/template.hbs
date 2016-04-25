@@ -11,7 +11,6 @@
 
     {{#each timeEntries as |timeEntry|}}
       {{entry-item
-          tagName=""
           timeEntry=timeEntry
           restartEntry=(action restartEntry timeEntry)
           updateEntry=(action updateEntry timeEntry)

@@ -1,13 +1,20 @@
-{{#if timeEntry.isEnded}}
-  {{entry-item-ended
+{{#if isEditing}}
+  {{entry-item-form
       tagName=""
       timeEntry=timeEntry
-      restartEntry=restartEntry
+      submitForm=updateEntry
+      closeForm=(action "stopEditing")
   }}
-{{else}}
+{{else if timeEntry.isActive}}
   {{entry-item-active
       tagName=""
       timeEntry=timeEntry
       stopEntry=stopEntry
+  }}
+{{else}}
+  {{entry-item-ended
+      tagName=""
+      timeEntry=timeEntry
+      restartEntry=restartEntry
   }}
 {{/if}}
