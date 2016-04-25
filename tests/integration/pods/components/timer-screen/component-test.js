@@ -10,15 +10,5 @@ test('it renders', function(assert) {
   // Handle any actions with this.on('myAction', function(val) { ... });
 
   this.render(hbs`{{timer-screen}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#timer-screen}}
-      template block text
-    {{/timer-screen}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.notEqual(this.$().text().trim(), '');
 });

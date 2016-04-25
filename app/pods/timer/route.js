@@ -26,11 +26,11 @@ export default Ember.Route.extend({
 
     stopTimeEntry(timeEntry) {
       let startedAt = timeEntry.get('startedAt');
-      let stoppedAt = new Date();
-      let duration = moment(stoppedAt).diff(startedAt, 'seconds');
+      let endedAt = new Date();
+      let duration = moment(endedAt).diff(startedAt, 'seconds');
 
       timeEntry.setProperties({
-        stoppedAt,
+        endedAt,
         duration
       });
 
