@@ -11,11 +11,9 @@ module.exports = function(defaults) {
       optional: ['es7.decorators']
     },
 
-    svgstore: {
-      files: {
-        sourceDirs: 'icons',
-        outputFile: '/assets/icons.svg'
-      }
+    svgjar: {
+      prefix: 'icon-',
+      ajaxing: true
     }
   });
 
