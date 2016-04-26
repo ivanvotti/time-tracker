@@ -19,7 +19,7 @@ module.exports = function(defaults) {
     }
   });
 
-  app.import('bower_components/normalize-css/normalize.css');
+  app.import(app.bowerDirectory + '/normalize-css/normalize.css');
 
   return app.toTree();
 };
