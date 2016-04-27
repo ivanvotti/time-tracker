@@ -13,7 +13,14 @@ module.exports = function(defaults) {
 
     svgjar: {
       prefix: 'icon-',
-      ajaxing: true
+      ajaxing: true,
+      optimize: {
+        plugins: [
+          { removeTitle: true },
+          { removeDesc: true },
+          { removeAttrs: { attrs: '(fill|fill-rule)' } }
+        ]
+      }
     }
   });
 
