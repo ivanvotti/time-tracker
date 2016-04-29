@@ -28,26 +28,20 @@
   font-size: 14px;
   text-transform: uppercase;
 
-  color: $btn-primary-color;
+  color: $btn-primary-text;
   border: 0;
   border-radius: 0 4px 4px 0;
-  background-color: $btn-primary-bg;
+  background: $btn-primary-bg;
   transition: background-color, opacity 0.2s ease-in-out;
   user-select: none;
 
   cursor: pointer;
 
-  &:hover {
-    background-color: darken($btn-primary-bg, 4%);
-  }
-
-  &:active {
-    box-shadow: $btn-active-box-shadow;
-  }
-
+  &[disabled],
   &.is-disabled {
     opacity: 0.8;
 
+    cursor: default;
     pointer-events: none;
 
     &:hover {
@@ -57,5 +51,13 @@
     &:active {
       box-shadow: none;
     }
+  }
+
+  &:hover:not(:disabled) {
+    background: $btn-primary-bg-hover;
+  }
+
+  &:active:not(:disabled) {
+    background: $btn-primary-bg-active;
   }
 }
