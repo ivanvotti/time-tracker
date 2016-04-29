@@ -12,13 +12,13 @@
   flex-grow: 1;
   padding: 10px;
 
-  border: 1px solid color(gray, light);
+  border: 1px solid $color-gray-light;
   border-right: 0;
   border-radius: 4px 0 0 4px;
   transition: border-color 0.2s ease-in-out;
 
   &:focus {
-    border-color: color(blue);
+    border-color: $color-blue;
   }
 }
 

@@ -2,8 +2,13 @@
   SVG icon styles
 */
 
-.c-svg-icon {
+.c-icon {
   width: 24px;
   height: 24px;
   fill: currentColor;
+
+  &--20 {
+    width: 20px;
+    height: 20px;
+  }
 }

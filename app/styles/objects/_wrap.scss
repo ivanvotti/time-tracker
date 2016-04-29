@@ -2,15 +2,10 @@
   Wrap object
 */
 
-$wrap-width: 990px !default;
-$wrap-width-small: 800px !default;
+$wrap-width: 800px !default;
 
 .o-wrap {
   display: block;
   max-width: $wrap-width;
   margin: 0 auto;
-
-  &--small {
-    max-width: $wrap-width-small;
-  }
 }

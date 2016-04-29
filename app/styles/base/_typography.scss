@@ -6,7 +6,7 @@ html,
 :root {
   font: 81.25%/1.75 "Open Sans", "Helvetica Neue", Arial, sans-serif;
 
-  color: color(gray, dark);
+  color: $color-gray-dark;
 }
 
 /**
@@ -59,13 +59,13 @@ hr {
   margin-bottom: $baseline;
 
   border: 0;
-  border-top: 1px solid color(gray, x-dark, 0.1);
+  border-top: 1px solid $color-gray-x-dark, 0.1;
 }
 
 a {
   text-decoration: none;
 
-  color: color(blue);
+  color: $color-blue;
 
   cursor: pointer;
 

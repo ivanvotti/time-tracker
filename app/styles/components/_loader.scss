@@ -6,7 +6,7 @@
   <div class="c-loader c-loader--white">...</div>
 */
 
-$loader-color: color(gray, dark) !default;
+$loader-color: $color-gray-dark !default;
 $loader-size: 6px !default;
 $loader-speed: 0.9s !default;
 
