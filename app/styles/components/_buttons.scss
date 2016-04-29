@@ -90,3 +90,29 @@
     }
   }
 }
+
+.c-icon-btn {
+  padding: 0;
+
+  line-height: 0;
+
+  color: $color-gray;
+  border: 0;
+  background-color: transparent;
+  user-select: none;
+
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: $color-blue;
+  }
+
+  &--light {
+    color: $color-gray-medium;
+  }
+
+  &--x-light {
+    color: rgba(146,150,154,0.7);
+  }
+}

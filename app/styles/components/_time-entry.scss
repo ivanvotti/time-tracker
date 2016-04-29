@@ -1,7 +1,6 @@
 .c-time-entry {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 48px;
   padding: 0 8px;
 
@@ -18,6 +17,7 @@
 .c-time-entry__left-side {
   display: flex;
   overflow: hidden;
+  flex-grow: 1;
   align-items: center;
 }
 
@@ -73,28 +73,5 @@
     font-weight: 600;
 
     color: $color-gray;
-  }
-}
-
-.c-time-entry__button {
-  padding: 0;
-
-  line-height: 0;
-
-  color: $color-gray;
-  border: 0;
-  background-color: transparent;
-  transition: background-color, opacity 0.2s ease-in-out;
-  user-select: none;
-
-  cursor: pointer;
-
-  &:hover,
-  &:active {
-    color: $color-blue;
-  }
-
-  &--start {
-    color: rgba(146,150,154,0.7);
   }
 }

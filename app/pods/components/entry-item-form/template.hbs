@@ -1,6 +1,6 @@
 <div class="c-time-entry__left-side">
   {{one-way-input
-      class="c-time-entry-form__input"
+      class="c-time-entry-form__input u-mar-right-s"
       placeholder="What were you doing?"
       value=name
       update=(action (mut name))
@@ -10,14 +10,14 @@
 
 <div class="c-time-entry__right-side">
   <button
-    class="c-btn c-btn--small c-btn--secondary"
+    class="c-icon-btn c-icon-btn--light u-mar-right-s"
     onclick={{action deleteEntry}}
   >
-    Delete
+    <svg class="c-icon c-icon--20"><use xlink:href="#icon-trash"></use></svg>
   </button>
 
   <button
-    class="c-btn c-btn--small c-btn--secondary"
+    class="c-btn c-btn--small c-btn--secondary u-mar-right-s"
     onclick={{action closeForm}}
   >
     Cancel
