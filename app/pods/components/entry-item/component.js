@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { run } = Ember;
+
 export default Ember.Component.extend({
   classNames: ['c-time-entry'],
   classNameBindings: ['timeEntry.isActive:c-time-entry--active'],
@@ -7,6 +9,7 @@ export default Ember.Component.extend({
 
   doubleClick() {
     this.set('isEditing', true);
+    run.scheduleOnce('afterRender', () => this.$('input').focus());
   },
 
   actions: {
