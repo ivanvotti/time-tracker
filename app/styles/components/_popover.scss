@@ -1,0 +1,108 @@
+/**
+  Popover component
+*/
+
+$popover-width: 240px;
+$popover-height: 200px;
+$popover-arrow-horizontal-width: 50px;
+$popover-arrow-horizontal-height: 16px;
+$popover-arrow-vertical-width: 16px;
+$popover-arrow-vertical-height: 50px;
+$popover-box-shadow: 0 0 1px 1px rgba(0,0,0,0.15), 0 2px 12px 0 rgba(0,0,0,0.12);
+$popover-bg: white;
+
+.c-popover {
+  position: relative;
+  z-index: 9000;
+  width: $popover-width;
+  height: $popover-height;
+
+  border-radius: 3px;
+  box-shadow: $popover-box-shadow;
+  background-color: $popover-bg;
+  animation: popoverFadeIn 60ms linear;
+
+  &.ember-tether-element-attached-bottom {
+    margin-top: -40px;  // depends on tether offset, that is "-20px 0"
+  }
+
+  &.ember-tether-element-attached-right {
+    margin-left: -40px;  // depends on tether offset, that is "0 -20px"
+  }
+}
+
+.c-popover__arrow {
+  overflow: hidden;
+  position: absolute;
+
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+
+    box-shadow: $popover-box-shadow;
+    background: $popover-bg;
+    transform: rotate(45deg);
+  }
+
+  .ember-tether-element-attached-right & {
+    top: $popover-height / 2 - $popover-arrow-vertical-height / 2;
+    right: -$popover-arrow-vertical-width;
+    width: $popover-arrow-vertical-width;
+    height: $popover-arrow-vertical-height;
+
+    &::before {
+      top: 12px;
+      left: -20px;
+    }
+  }
+
+  .ember-tether-element-attached-left & {
+    top: $popover-height / 2 - $popover-arrow-vertical-height / 2;
+    left: -$popover-arrow-vertical-width;
+    width: $popover-arrow-vertical-width;
+    height: $popover-arrow-vertical-height;
+
+    &::before {
+      top: 12px;
+      left: 10px;
+    }
+  }
+
+  .ember-tether-element-attached-top & {
+    top: -$popover-arrow-horizontal-height;
+    left: $popover-width / 2 - $popover-arrow-horizontal-width / 2;
+    width: $popover-arrow-horizontal-width;
+    height: $popover-arrow-horizontal-height;
+
+    &::before {
+      top: 9px;
+      left: 12px;
+    }
+  }
+
+  .ember-tether-element-attached-bottom & {
+    bottom: -$popover-arrow-horizontal-height;
+    left: $popover-width / 2 - $popover-arrow-horizontal-width / 2;
+    width: $popover-arrow-horizontal-width;
+    height: $popover-arrow-horizontal-height;
+
+    &::before {
+      top: -18px;
+      left: 12px;
+    }
+  }
+}
+
+@keyframes popoverFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
