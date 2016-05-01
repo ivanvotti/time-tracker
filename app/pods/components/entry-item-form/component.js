@@ -6,6 +6,14 @@ const { empty, or } = Ember.computed;
 export default Ember.Component.extend({
   name: null,
 
+  entryTags: [],
+  allTags: [
+    { name: 'Money' },
+    { name: 'Health' },
+    { name: 'Sport' },
+    { name: 'Working' }
+  ],
+
   isInvalid: empty('name'),
   isDisabled: or('submitFormTask.isRunning', 'isInvalid'),
 
@@ -27,5 +35,19 @@ export default Ember.Component.extend({
     yield this.attrs.submitForm(formData);
 
     this.attrs.closeForm();
-  }).drop()
+  }).drop(),
+
+  actions: {
+    createNewTag(name) {
+      this.allTags.pushObject({ name });
+    },
+
+    addTag(tag) {
+      this.entryTags.pushObject(tag);
+    },
+
+    removeTag(tag) {
+      this.entryTags.removeObject(tag);
+    }
+  }
 });

@@ -115,4 +115,10 @@
   &--x-light {
     color: rgba(146,150,154,0.7);
   }
+
+  &--popover {
+    &.ember-tether-enabled {
+      color: $color-blue;
+    }
+  }
 }

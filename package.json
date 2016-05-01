@@ -47,7 +47,6 @@
     "ember-data": "^2.5.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
-    "ember-modal-dialog": "0.8.3",
     "ember-one-way-controls": "0.6.2",
     "ember-page-title": "3.0.0",
     "ember-pouch": "3.2.0",
