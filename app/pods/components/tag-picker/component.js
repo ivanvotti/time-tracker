@@ -1,14 +1,12 @@
 import Ember from 'ember';
 
 const { $, run } = Ember;
-const { setDiff } = Ember.computed;
 
 export default Ember.Component.extend({
   target: null,
   tags: null,
   selectedTags: null,
-
-  availableTags: setDiff('tags', 'selectedTags'),
+  inputValue: null,
 
   initAutoFocus() {
     this.$('.js-tag-picker__input').focus();
@@ -48,5 +46,11 @@ export default Ember.Component.extend({
   willDestroyElement() {
     this._super(...arguments);
     this.offClickOutsideToClose();
+  },
+
+  actions: {
+    setInputValue(value) {
+      this.set('inputValue', value);
+    }
   }
 });

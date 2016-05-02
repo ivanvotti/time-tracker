@@ -1,0 +1,12 @@
+<div class="c-tag-picker__list">
+  {{#each filteredTags as |tag|}}
+    <div
+      class="c-tag-picker__list-item"
+      onclick={{action addTag tag}}
+    >
+      <div class="c-tag-picker__list-text">
+        {{tag.name}}
+      </div>
+    </div>
+  {{/each}}
+</div>

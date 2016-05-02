@@ -1,38 +1,16 @@
 {{#c-popover target=target}}
   <div class="c-tag-picker">
-    <div class="c-tag-picker__input-section js-tag-picker__input-section">
-      {{#each selectedTags as |tag|}}
-        <div class="c-tag-picker__tag">
-          <div class="c-tag-picker__tag-text">
-            {{tag.name}}
-          </div>
+    {{tag-picker-input
+        tags=selectedTags
+        removeTag=removeTag
+        setInputValue=(action "setInputValue")
+    }}
 
-          <button
-            class="c-tag-picker__tag-btn"
-            {{action (action removeTag tag)}}
-          >
-            ✕
-          </button>
-        </div>
-      {{/each}}
-
-      <input
-        class="c-tag-picker__input js-tag-picker__input"
-        placeholder="Add tags"
-      >
-    </div>
-
-    <div class="c-tag-picker__list">
-      {{#each availableTags as |tag|}}
-        <div
-          class="c-tag-picker__list-item"
-          onclick={{action addTag tag}}
-        >
-          <div class="c-tag-picker__list-text">
-            {{tag.name}}
-          </div>
-        </div>
-      {{/each}}
-    </div>
+    {{tag-picker-list
+        tags=tags
+        selectedTags=selectedTags
+        inputValue=inputValue
+        addTag=addTag
+    }}
   </div>
 {{/c-popover}}
