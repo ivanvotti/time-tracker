@@ -1,16 +1,19 @@
 {{#c-popover target=target}}
   <div class="c-tag-picker">
     {{tag-picker-input
-        tags=selectedTags
+        inputValue=inputValue
+        selectedTags=selectedTags
         removeTag=removeTag
         setInputValue=(action "setInputValue")
     }}
 
     {{tag-picker-list
+        inputValue=inputValue
         tags=tags
         selectedTags=selectedTags
-        inputValue=inputValue
-        addTag=addTag
+        addTag=(action "addTag")
+        createNewTag=(action "createNewTag")
+        close=close
     }}
   </div>
 {{/c-popover}}

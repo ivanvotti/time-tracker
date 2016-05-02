@@ -39,7 +39,9 @@ export default Ember.Component.extend({
 
   actions: {
     createNewTag(name) {
-      this.allTags.pushObject({ name });
+      let tag = { name };
+      this.allTags.pushObject(tag);
+      this.entryTags.pushObject(tag);
     },
 
     addTag(tag) {

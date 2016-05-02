@@ -1,12 +1,27 @@
-<div class="c-tag-picker__list">
-  {{#each filteredTags as |tag|}}
-    <div
-      class="c-tag-picker__list-item"
-      onclick={{action addTag tag}}
-    >
-      <div class="c-tag-picker__list-text">
-        {{tag.name}}
-      </div>
+{{#each filteredTags as |tag|}}
+  <div
+    class="c-tag-picker__list-item"
+    onclick={{action addTag tag}}
+  >
+    <div class="c-tag-picker__list-text">
+      {{tag.name}}
     </div>
-  {{/each}}
-</div>
+  </div>
+{{else}}
+  {{#if (or (not inputValue) (not canCreateTag))}}
+    <div>No tags found</div>
+  {{/if}}
+{{/each}}
+
+{{#if canCreateTag}}
+  <div
+    class="c-tag-picker__list-item"
+    onclick={{action createNewTag inputValue}}
+  >
+    <svg class="c-icon c-icon--13 c-tag-picker__list-icon"><use xlink:href="#icon-plus-13"></use></svg>
+
+    <div class="c-tag-picker__list-text">
+      Add {{inputValue}}...
+    </div>
+  </div>
+{{/if}}

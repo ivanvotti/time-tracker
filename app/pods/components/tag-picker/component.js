@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { on } from 'ember-computed-decorators';
 
 const { $, run } = Ember;
 
@@ -8,14 +9,21 @@ export default Ember.Component.extend({
   selectedTags: null,
   inputValue: null,
 
-  initAutoFocus() {
-    this.$('.js-tag-picker__input').focus();
+  resetInputValue() {
+    this.set('inputValue', null);
+    this.focusInput();
   },
 
   click() {
-    this.$('.js-tag-picker__input').focus();
+    this.focusInput();
   },
 
+  @on('didInsertElement')
+  focusInput() {
+    run(() => this.$('.js-tag-picker__input').focus());
+  },
+
+  @on('didInsertElement')
   initClickOutsideToClose() {
     run.next(() => {
       $(document).on('click.c-tag-picker', (event) => {
@@ -33,24 +41,24 @@ export default Ember.Component.extend({
     });
   },
 
+  @on('willDestroyElement')
   offClickOutsideToClose() {
     $(document).off('click.c-tag-picker');
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-    this.initAutoFocus();
-    this.initClickOutsideToClose();
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-    this.offClickOutsideToClose();
   },
 
   actions: {
     setInputValue(value) {
       this.set('inputValue', value);
+    },
+
+    createNewTag(...args) {
+      this.attrs.createNewTag(...args);
+      this.resetInputValue();
+    },
+
+    addTag(...args) {
+      this.attrs.addTag(...args);
+      this.resetInputValue();
     }
   }
 });
