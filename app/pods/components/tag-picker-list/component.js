@@ -28,16 +28,16 @@ export default Ember.Component.extend(EKMixin, {
 
   @computed('inputValue', 'tags.[]')
   canCreateTag(inputValue, tags) {
-    if (!inputValue || !tags) {
+    if (!inputValue) {
       return false;
     }
 
     let upperInputValue = inputValue.toUpperCase();
-    let foundTags = tags.filter((tag) => (
+    let isTagNameUnique = !tags.any((tag) => (
       tag.get('name').toUpperCase() === upperInputValue
     ));
 
-    return foundTags.get('length') === 0;
+    return isTagNameUnique;
   },
 
   @on(keyUp('ArrowUp'))
@@ -56,7 +56,9 @@ export default Ember.Component.extend(EKMixin, {
     let $current = this.$('.is-active');
     let $next = $current.next();
 
-    if ($next.length) {
+    if (!$current.length) {
+      this.$('.c-tag-picker__list-item').first().addClass('is-active');
+    } else if ($next.length) {
       $current.removeClass('is-active');
       $next.addClass('is-active');
     }
@@ -82,9 +84,11 @@ export default Ember.Component.extend(EKMixin, {
 
   @on('didRender')
   resetActiveItem() {
-    this.$('.c-tag-picker__list-item')
-      .removeClass('is-active')
-      .first()
-      .addClass('is-active');
+    let $items = this.$('.c-tag-picker__list-item');
+    $items.removeClass('is-active');
+
+    if (this.get('inputValue')) {
+      $items.first().addClass('is-active');
+    }
   }
 });
