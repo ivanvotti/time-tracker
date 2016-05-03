@@ -12,6 +12,7 @@
     {{#each timeEntries as |timeEntry|}}
       {{entry-item
           timeEntry=timeEntry
+          tags=tags
           restartEntry=(action restartEntry timeEntry)
           updateEntry=(action updateEntry timeEntry)
           deleteEntry=(action deleteEntry timeEntry)

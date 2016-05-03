@@ -1,20 +1,19 @@
 {{#if isEditing}}
   {{entry-item-form
-      tagName=""
       timeEntry=timeEntry
+      tags=tags
       submitForm=updateEntry
+      allTags=allTags
       deleteEntry=deleteEntry
       closeForm=(action "stopEditing")
   }}
 {{else if timeEntry.isActive}}
   {{entry-item-active
-      tagName=""
       timeEntry=timeEntry
       stopEntry=stopEntry
   }}
 {{else}}
   {{entry-item-ended
-      tagName=""
       timeEntry=timeEntry
       restartEntry=restartEntry
   }}

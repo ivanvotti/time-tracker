@@ -4,52 +4,58 @@ import { task } from 'ember-concurrency';
 const { empty, or } = Ember.computed;
 
 export default Ember.Component.extend({
-  name: null,
+  timeEntry: null,
 
-  entryTags: [],
-  allTags: [
-    { name: 'Money' },
-    { name: 'Health' },
-    { name: 'Sport' },
-    { name: 'Working' }
-  ],
+  tagName: '',
 
-  isInvalid: empty('name'),
+  isInvalid: empty('entryName'),
   isDisabled: or('submitFormTask.isRunning', 'isInvalid'),
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    this.initFormValues();
-  },
-
-  initFormValues() {
-    this.set('name', this.get('timeEntry.name'));
-  },
 
   submitFormTask: task(function* () {
     if (this.get('isInvalid')) {
       return;
     }
 
-    let formData = this.getProperties('name');
-    yield this.attrs.submitForm(formData);
+    yield this.attrs.submitForm({
+      name: this.get('entryName'),
+      tags: this.get('entryTags')
+    });
 
     this.attrs.closeForm();
   }).drop(),
 
+  initFormValues() {
+    let entryTags = [];
+
+    this.set('entryName', this.get('timeEntry.name'));
+    this.set('entryTags', entryTags);
+    this.get('timeEntry.tags').then((tags) => entryTags.addObjects(tags));
+  },
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.initFormValues();
+  },
+
   actions: {
-    createNewTag(name) {
-      let tag = { name };
-      this.allTags.pushObject(tag);
-      this.entryTags.pushObject(tag);
+    addNewTagToEntry(newTagName) {
+      let entryTags = this.get('entryTags');
+      let upperNewTagName = newTagName.toUpperCase();
+      let isNewTagNameUnique = !entryTags.any((tag) => (
+        tag.get('name').toUpperCase() === upperNewTagName
+      ));
+
+      if (isNewTagNameUnique) {
+        entryTags.pushObject(new Ember.Object({ name: newTagName }));
+      }
     },
 
-    addTag(tag) {
-      this.entryTags.pushObject(tag);
+    addTagToEntry(tag) {
+      this.get('entryTags').pushObject(tag);
     },
 
-    removeTag(tag) {
-      this.entryTags.removeObject(tag);
+    removeTagFromEntry(tag) {
+      this.get('entryTags').removeObject(tag);
     }
   }
 });

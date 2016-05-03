@@ -1,7 +1,8 @@
 {{title "Timer" prepend=true}}
 
 {{timer-screen
-    timeEntries=model
+    timeEntries=model.timeEntries
+    tags=model.tags
     addNewEntry=(route-action "addNewEntry")
     restartEntry=(route-action "restartEntry")
     stopEntry=(route-action "stopEntry")

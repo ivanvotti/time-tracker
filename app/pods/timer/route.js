@@ -1,9 +1,18 @@
 import Ember from 'ember';
 import moment from 'moment';
 
+const { RSVP } = Ember;
+
+function saveTags(/* entry, tags */) {
+  return RSVP.resolve();
+}
+
 export default Ember.Route.extend({
   model() {
-    return this.store.findAll('time-entry');
+    return RSVP.hash({
+      timeEntries: this.store.findAll('time-entry'),
+      tags: this.store.findAll('tag')
+    });
   },
 
   actions: {
@@ -27,19 +36,19 @@ export default Ember.Route.extend({
     stopEntry(timeEntry) {
       let startedAt = timeEntry.get('startedAt');
       let endedAt = new Date();
-      let duration = moment(endedAt).diff(startedAt, 'seconds');
 
       timeEntry.setProperties({
         endedAt,
-        duration
+        duration: moment(endedAt).diff(startedAt, 'seconds')
       });
 
       return timeEntry.save();
     },
 
-    updateEntry(timeEntry, data) {
-      timeEntry.setProperties(data);
-      return timeEntry.save();
+    updateEntry(timeEntry, formData) {
+      timeEntry.setProperties({ name: formData.name });
+      return saveTags(timeEntry, formData.tags)
+        .then(() => timeEntry.save());
     },
 
     deleteEntry(timeEntry) {

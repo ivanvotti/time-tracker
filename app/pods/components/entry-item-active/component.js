@@ -6,6 +6,8 @@ import formatDuration from 'time-tracker/utils/format-duration';
 
 export default Ember.Component.extend({
   timeEntry: null,
+
+  tagName: '',
   duration: 0,
 
   @computed('duration')

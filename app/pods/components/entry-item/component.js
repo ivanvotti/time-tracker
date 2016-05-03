@@ -3,9 +3,10 @@ import Ember from 'ember';
 const { run } = Ember;
 
 export default Ember.Component.extend({
+  isEditing: false,
+
   classNames: ['c-time-entry'],
   classNameBindings: ['timeEntry.isActive:c-time-entry--active'],
-  isEditing: false,
 
   doubleClick() {
     this.set('isEditing', true);

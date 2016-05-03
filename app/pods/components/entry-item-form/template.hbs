@@ -1,11 +1,11 @@
 {{#if isTagPickerOpen}}
   {{tag-picker
       target=".js-tag-popover-target"
-      tags=allTags
+      tags=tags
       selectedTags=entryTags
-      addTag=(action "addTag")
-      removeTag=(action "removeTag")
-      createNewTag=(action "createNewTag")
+      addTag=(action "addTagToEntry")
+      removeTag=(action "removeTagFromEntry")
+      createNewTag=(action "addNewTagToEntry")
       close=(toggle-action "isTagPickerOpen" this)
   }}
 {{/if}}
@@ -14,8 +14,8 @@
   {{one-way-input
       class="c-time-entry-form__input u-mar-right-s"
       placeholder="What were you doing?"
-      value=name
-      update=(action (mut name))
+      value=entryName
+      update=(action (mut entryName))
       onenter=(perform submitFormTask)
   }}
 </div>

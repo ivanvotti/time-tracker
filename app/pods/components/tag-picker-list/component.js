@@ -2,7 +2,6 @@ import Ember from 'ember';
 import computed, { on } from 'ember-computed-decorators';
 import { EKMixin, keyUp } from 'ember-keyboard';
 
-const { get } = Ember;
 const { setDiff } = Ember.computed;
 
 export default Ember.Component.extend(EKMixin, {
@@ -20,9 +19,7 @@ export default Ember.Component.extend(EKMixin, {
       let upperInputValue = inputValue.toUpperCase();
 
       return tags.filter((tag) => (
-        get(tag, 'name')
-          .toUpperCase()
-          .startsWith(upperInputValue)
+        tag.get('name').toUpperCase().startsWith(upperInputValue)
       ));
     }
 
@@ -37,10 +34,10 @@ export default Ember.Component.extend(EKMixin, {
 
     let upperInputValue = inputValue.toUpperCase();
     let foundTags = tags.filter((tag) => (
-      get(tag, 'name').toUpperCase() === upperInputValue
+      tag.get('name').toUpperCase() === upperInputValue
     ));
 
-    return get(foundTags, 'length') === 0;
+    return foundTags.get('length') === 0;
   },
 
   @on(keyUp('ArrowUp'))
