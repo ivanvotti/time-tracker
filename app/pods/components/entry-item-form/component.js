@@ -8,11 +8,11 @@ export default Ember.Component.extend({
 
   tagName: '',
 
-  isInvalid: empty('entryName'),
-  isDisabled: or('submitFormTask.isRunning', 'isInvalid'),
+  isFormInvalid: empty('entryName'),
+  isDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
 
   submitFormTask: task(function* () {
-    if (this.get('isInvalid')) {
+    if (this.get('isFormInvalid')) {
       return;
     }
 

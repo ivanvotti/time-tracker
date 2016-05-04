@@ -1,5 +1,8 @@
 <div class="o-wrap">
-  {{timer-form submitForm=(action "startNewTimer")}}
+  {{timer-form
+      tags=tags
+      submitForm=(action "startNewTimer")
+  }}
 
   {{entry-list
       timeEntries=timeEntries
