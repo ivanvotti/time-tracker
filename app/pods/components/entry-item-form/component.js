@@ -46,7 +46,8 @@ export default Ember.Component.extend({
       ));
 
       if (isNewTagNameUnique) {
-        entryTags.pushObject(new Ember.Object({ name: newTagName }));
+        let mockTag = new Ember.Object({ name: newTagName, isMock: true });
+        entryTags.pushObject(mockTag);
       }
     },
 
