@@ -11,6 +11,10 @@ module.exports = function(defaults) {
       optional: ['es7.decorators']
     },
 
+    sassOptions: {
+      nodeSass: require('node-sass')
+    },
+
     svgjar: {
       prefix: 'icon-',
       ajaxing: true,
