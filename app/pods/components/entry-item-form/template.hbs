@@ -1,6 +1,6 @@
 {{#if isTagPickerOpen}}
   {{tag-picker
-      target=".js-entry-tag-picker-target"
+      target=(concat ".js-tag-picker-target-" elementId)
       tags=tags
       selectedTags=entryTags
       addTag=(action "addTagToEntry")
@@ -22,7 +22,7 @@
 
 <div class="c-time-entry__right-side">
   <button
-    class="c-icon-btn c-icon-btn--light c-icon-btn--popover u-mar-right-s js-entry-tag-picker-target"
+    class="c-icon-btn c-icon-btn--light c-icon-btn--popover u-mar-right-s js-tag-picker-target-{{elementId}}"
     {{action (toggle-action "isTagPickerOpen" this)}}
   >
     <svg class="c-icon c-icon--20"><use xlink:href="#icon-tag-20"></use></svg>

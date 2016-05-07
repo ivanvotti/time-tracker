@@ -26,7 +26,8 @@ export default Ember.Component.extend({
   @on('didInsertElement')
   initClickOutsideToClose() {
     run.next(() => {
-      $(document).on('click.c-tag-picker', (event) => {
+      let elementId = this.get('elementId');
+      $(document).on(`click.tag-picker-${elementId}`, (event) => {
         let $target = $(event.target);
         // We have to check the class name of the target as well,
         // because if `$target` is already removed from the DOM,
@@ -43,7 +44,8 @@ export default Ember.Component.extend({
 
   @on('willDestroyElement')
   offClickOutsideToClose() {
-    $(document).off('click.c-tag-picker');
+    let elementId = this.get('elementId');
+    $(document).off(`click.tag-picker-${elementId}`);
   },
 
   actions: {
