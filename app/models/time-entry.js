@@ -5,7 +5,7 @@ import Model from 'ember-pouch/model';
 import moment from 'moment';
 import formatDuration from 'time-tracker/utils/format-duration';
 
-const { empty } = Ember.computed;
+const { empty, sort } = Ember.computed;
 const { attr, hasMany } = DS;
 
 export default Model.extend({
@@ -16,6 +16,9 @@ export default Model.extend({
   tags: hasMany('tag'),
 
   isActive: empty('endedAt'),
+
+  tagsSorting: ['name'],
+  sortedTags: sort('tags', 'tagsSorting'),
 
   @computed('duration')
   durationDisplay(duration) {
