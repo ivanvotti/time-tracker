@@ -50,7 +50,10 @@ export default Ember.Component.extend(EKMixin, {
 
     if ($previous.length) {
       $current.removeClass('is-active');
-      $previous.addClass('is-active');
+      $previous
+        .addClass('is-active')
+        .get(0)
+        .scrollIntoViewIfNeeded(false);
     }
   },
 
@@ -60,10 +63,17 @@ export default Ember.Component.extend(EKMixin, {
     let $next = $current.next();
 
     if (!$current.length) {
-      this.$('.js-tag-picker__list-item').first().addClass('is-active');
+      this.$('.js-tag-picker__list-item')
+        .first()
+        .addClass('is-active')
+        .get(0)
+        .scrollIntoViewIfNeeded(false);
     } else if ($next.length) {
       $current.removeClass('is-active');
-      $next.addClass('is-active');
+      $next
+        .addClass('is-active')
+        .get(0)
+        .scrollIntoViewIfNeeded(false);
     }
   },
 
