@@ -1,17 +1,29 @@
 import Ember from 'ember';
+import { on } from 'ember-computed-decorators';
 import { task } from 'ember-concurrency';
+import { EKMixin, keyDown } from 'ember-keyboard';
 
-const { empty, or } = Ember.computed;
+const { run } = Ember;
+const { empty, or, equal } = Ember.computed;
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(EKMixin, {
   tagName: '',
+  currentField: null,
 
+  isTagPickerActive: equal('currentField', 'tagPicker'),
   isFormInvalid: empty('entryName'),
   isSubmitDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
 
   resetForm() {
     this.set('entryName', '');
     this.set('entryTags', []);
+  },
+
+  toggleKeyboard({ isEnabled }) {
+    this.setProperties({
+      keyboardActivated: isEnabled,
+      keyboardFirstResponder: isEnabled
+    });
   },
 
   submitFormTask: task(function* () {
@@ -26,6 +38,19 @@ export default Ember.Component.extend({
 
     this.resetForm();
   }).drop(),
+
+  @on(keyDown('Tab'))
+  onTab(event) {
+    event.preventDefault();
+    let currentField = this.get('currentField');
+    let nextField = currentField === 'nameInput' ? 'tagPicker' : 'nameInput';
+
+    if (nextField === 'nameInput') {
+      run(() => Ember.$('.js-timer-form-name-input').focus());
+    }
+
+    this.set('currentField', nextField);
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -52,6 +77,18 @@ export default Ember.Component.extend({
 
     removeTagFromEntry(tag) {
       this.get('entryTags').removeObject(tag);
+    },
+
+    focusField(fieldName) {
+      this.set('currentField', fieldName);
+      this.toggleKeyboard({ isEnabled: true });
+    },
+
+    blurField(fieldName) {
+      if (fieldName === this.get('currentField')) {
+        this.set('currentField', null);
+        this.toggleKeyboard({ isEnabled: false });
+      }
     }
   }
 });
