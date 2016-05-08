@@ -60,7 +60,7 @@ export default Ember.Component.extend(EKMixin, {
     let $next = $current.next();
 
     if (!$current.length) {
-      this.$('.c-tag-picker__list-item').first().addClass('is-active');
+      this.$('.js-tag-picker__list-item').first().addClass('is-active');
     } else if ($next.length) {
       $current.removeClass('is-active');
       $next.addClass('is-active');
@@ -87,7 +87,7 @@ export default Ember.Component.extend(EKMixin, {
 
   @on('didRender')
   resetActiveItem() {
-    let $items = this.$('.c-tag-picker__list-item');
+    let $items = this.$('.js-tag-picker__list-item');
     $items.removeClass('is-active');
 
     if (this.get('inputValue')) {
