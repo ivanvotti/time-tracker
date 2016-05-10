@@ -6,34 +6,33 @@
       addTag=(action "addTagToEntry")
       removeTag=(action "removeTagFromEntry")
       createNewTag=(action "addNewTagToEntry")
-      close=(action "blurField" "tagPicker")
+      emptyEnter=(action "focusNameInput")
+      close=(pipe-action (toggle "isTagPickerActive" this) (action "disableKeyboard"))
   }}
 {{/if}}
 
-<div class="c-timer-form">
-  <div class="c-timer-form__input-wrap">
-    {{one-way-input
-        class="c-timer-form__input js-timer-form-name-input"
-        placeholder="What are you doing?"
-        value=entryName
-        update=(action (mut entryName))
-        onenter=(perform submitFormTask)
-        focusIn=(action "focusField" "nameInput")
-        focusOut=(action "blurField" "nameInput")
-    }}
-
-    <button
-      class="c-icon-btn c-icon-btn--x-light c-icon-btn--popover c-timer-form__input-addon js-tag-picker-target-{{elementId}}"
-      onclick={{action "focusField" "tagPicker"}}
-    >
-      <svg class="c-icon c-icon--20"><use xlink:href="#icon-tag-20"></use></svg>
-    </button>
-  </div>
+<div class="c-timer-form__input-wrap">
+  {{one-way-input
+      class="c-timer-form__input js-entry-form-name-input"
+      placeholder="What are you doing?"
+      value=entryName
+      update=(action (mut entryName))
+      onenter=(perform submitFormTask)
+      focusIn=(action "enableKeyboard")
+      focusOut=(action "disableKeyboard")
+  }}
 
   <button
-    class="c-timer-form__button {{if isSubmitDisabled 'is-disabled'}}"
-    onclick={{perform submitFormTask}}
+    class="c-icon-btn c-icon-btn--x-light c-icon-btn--popover c-timer-form__input-addon js-tag-picker-target-{{elementId}}"
+    onclick={{pipe-action (toggle "isTagPickerActive" this) (action "enableKeyboard")}}
   >
-    Start
+    <svg class="c-icon c-icon--20"><use xlink:href="#icon-tag-20"></use></svg>
   </button>
 </div>
+
+<button
+  class="c-timer-form__button {{if isSubmitDisabled 'is-disabled'}}"
+  onclick={{perform submitFormTask}}
+>
+  Start
+</button>

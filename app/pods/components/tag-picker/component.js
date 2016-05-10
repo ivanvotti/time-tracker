@@ -29,7 +29,7 @@ export default Component.extend({
   },
 
   focusInput() {
-    run(() => this.$('.js-tag-picker__input').focus());
+    run(() => this.$('.js-tag-picker-input').focus());
   },
 
   initClickOutsideToClose() {

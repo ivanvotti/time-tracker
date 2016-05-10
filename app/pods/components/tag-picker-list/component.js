@@ -58,7 +58,7 @@ export default Component.extend(EKMixin, {
   },
 
   resetActiveItem() {
-    let $items = this.$('.js-tag-picker__list-item');
+    let $items = this.$('.js-tag-picker-list-item');
     $items.removeClass('is-active');
 
     if (this.get('inputValue')) {
@@ -92,7 +92,7 @@ export default Component.extend(EKMixin, {
         .get(0)
         .scrollIntoViewIfNeeded(false);
     } else if (!$selectedItem.length) {
-      this.$('.js-tag-picker__list-item')
+      this.$('.js-tag-picker-list-item')
         .first()
         .addClass('is-active');
     }

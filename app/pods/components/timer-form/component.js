@@ -1,16 +1,14 @@
 import Component from 'ember-component';
 import EmberObject from 'ember-object';
-import { empty, or, equal } from 'ember-computed';
+import { empty, or } from 'ember-computed';
 import { on } from 'ember-computed-decorators';
 import { task } from 'ember-concurrency';
 import { EKMixin, keyDown } from 'ember-keyboard';
-import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
-  tagName: '',
-  currentField: null,
+  classNames: ['c-timer-form'],
+  isTagPickerActive: false,
 
-  isTagPickerActive: equal('currentField', 'tagPicker'),
   isFormInvalid: empty('entryName'),
   isSubmitDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
 
@@ -24,24 +22,30 @@ export default Component.extend(EKMixin, {
     this.set('entryTags', []);
   },
 
-  toggleKeyboard({ isEnabled }) {
+  toggleKeyboard({ isActivated }) {
+    if (this.get('keyboardActivated') === isActivated) {
+      return;
+    }
+
     this.setProperties({
-      keyboardActivated: isEnabled,
-      keyboardFirstResponder: isEnabled
+      keyboardActivated: isActivated,
+      keyboardFirstResponder: isActivated
     });
   },
 
   @on(keyDown('Tab'))
   onTab(event) {
     event.preventDefault();
-    let currentField = this.get('currentField');
-    let nextField = currentField === 'nameInput' ? 'tagPicker' : 'nameInput';
 
-    if (nextField === 'nameInput') {
-      $('.js-timer-form-name-input').focus();
+    if (this.get('isTagPickerActive')) {
+      this.send('focusNameInput');
+    } else {
+      // Trigger the name input focusOut event, so its disableKeyboard action
+      // is called before the following enableKeyboard one.
+      this.$('.js-entry-form-name-input').blur();
+      this.set('isTagPickerActive', true);
+      this.send('enableKeyboard');
     }
-
-    this.set('currentField', nextField);
   },
 
   submitFormTask: task(function* () {
@@ -66,8 +70,8 @@ export default Component.extend(EKMixin, {
       ));
 
       if (isNewTagNameUnique) {
-        let mockTag = new EmberObject({ name: newTagName, isMock: true });
-        entryTags.pushObject(mockTag);
+        let tagMock = new EmberObject({ name: newTagName, isMock: true });
+        entryTags.pushObject(tagMock);
       }
     },
 
@@ -79,16 +83,17 @@ export default Component.extend(EKMixin, {
       this.get('entryTags').removeObject(tag);
     },
 
-    focusField(fieldName) {
-      this.set('currentField', fieldName);
-      this.toggleKeyboard({ isEnabled: true });
+    enableKeyboard() {
+      this.toggleKeyboard({ isActivated: true });
     },
 
-    blurField(fieldName) {
-      if (fieldName === this.get('currentField')) {
-        this.set('currentField', null);
-        this.toggleKeyboard({ isEnabled: false });
-      }
+    disableKeyboard() {
+      this.toggleKeyboard({ isActivated: false });
+    },
+
+    focusNameInput() {
+      this.set('isTagPickerActive', false);
+      this.$('.js-entry-form-name-input').focus();
     }
   }
 });

@@ -7,8 +7,8 @@ import { EKMixin, keyDown } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
   classNames: ['c-time-entry'],
-  timeEntry: null,
   isTagPickerActive: false,
+  timeEntry: null,
 
   isFormInvalid: empty('entryName'),
   isSubmitDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
