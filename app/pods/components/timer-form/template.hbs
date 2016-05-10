@@ -1,14 +1,16 @@
 {{#if isTagPickerActive}}
-  {{tag-picker
-      target=(concat ".js-tag-picker-target-" elementId)
-      tags=tags
-      selectedTags=entryTags
-      addTag=(action "addTagToEntry")
-      removeTag=(action "removeTagFromEntry")
-      createNewTag=(action "addNewTagToEntry")
-      emptyEnter=(action "focusNameInput")
-      close=(pipe-action (toggle "isTagPickerActive" this) (action "disableKeyboard"))
-  }}
+  {{#ember-wormhole to="modals"}}
+    {{tag-picker
+        target=(concat ".js-tag-picker-target-" elementId)
+        tags=tags
+        selectedTags=entryTags
+        addTag=(action "addTagToEntry")
+        removeTag=(action "removeTagFromEntry")
+        createNewTag=(action "addNewTagToEntry")
+        emptyEnter=(action "focusNameInput")
+        close=(pipe-action (toggle "isTagPickerActive" this) (action "disableKeyboard"))
+    }}
+  {{/ember-wormhole}}
 {{/if}}
 
 <div class="c-timer-form__input-wrap">
