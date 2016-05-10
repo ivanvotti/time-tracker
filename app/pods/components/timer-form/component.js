@@ -14,6 +14,11 @@ export default Ember.Component.extend(EKMixin, {
   isFormInvalid: empty('entryName'),
   isSubmitDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.resetForm();
+  },
+
   resetForm() {
     this.set('entryName', '');
     this.set('entryTags', []);
@@ -25,19 +30,6 @@ export default Ember.Component.extend(EKMixin, {
       keyboardFirstResponder: isEnabled
     });
   },
-
-  submitFormTask: task(function* () {
-    if (this.get('isFormInvalid')) {
-      return;
-    }
-
-    yield this.attrs.submitForm({
-      name: this.get('entryName'),
-      tags: this.get('entryTags')
-    });
-
-    this.resetForm();
-  }).drop(),
 
   @on(keyDown('Tab'))
   onTab(event) {
@@ -52,10 +44,18 @@ export default Ember.Component.extend(EKMixin, {
     this.set('currentField', nextField);
   },
 
-  didReceiveAttrs() {
-    this._super(...arguments);
+  submitFormTask: task(function* () {
+    if (this.get('isFormInvalid')) {
+      return;
+    }
+
+    yield this.attrs.submitForm({
+      name: this.get('entryName'),
+      tags: this.get('entryTags')
+    });
+
     this.resetForm();
-  },
+  }).drop(),
 
   actions: {
     addNewTagToEntry(newTagName) {

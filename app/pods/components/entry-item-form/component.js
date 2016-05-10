@@ -11,6 +11,19 @@ export default Ember.Component.extend({
   isFormInvalid: empty('entryName'),
   isDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.initFormValues();
+  },
+
+  initFormValues() {
+    let entryTags = [];
+
+    this.set('entryName', this.get('timeEntry.name'));
+    this.set('entryTags', entryTags);
+    this.get('timeEntry.tags').then((tags) => entryTags.addObjects(tags));
+  },
+
   submitFormTask: task(function* () {
     if (this.get('isFormInvalid')) {
       return;
@@ -23,19 +36,6 @@ export default Ember.Component.extend({
 
     this.attrs.closeForm();
   }).drop(),
-
-  initFormValues() {
-    let entryTags = [];
-
-    this.set('entryName', this.get('timeEntry.name'));
-    this.set('entryTags', entryTags);
-    this.get('timeEntry.tags').then((tags) => entryTags.addObjects(tags));
-  },
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    this.initFormValues();
-  },
 
   actions: {
     addNewTagToEntry(newTagName) {

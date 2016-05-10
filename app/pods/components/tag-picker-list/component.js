@@ -43,6 +43,32 @@ export default Ember.Component.extend(EKMixin, {
     return isTagNameUnique;
   },
 
+  didRender() {
+    this._super(...arguments);
+    this.resetActiveItem();
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    this.activateKeyboard();
+  },
+
+  activateKeyboard() {
+    this.setProperties({
+      keyboardActivated: true,
+      keyboardFirstResponder: true
+    });
+  },
+
+  resetActiveItem() {
+    let $items = this.$('.js-tag-picker__list-item');
+    $items.removeClass('is-active');
+
+    if (this.get('inputValue')) {
+      $items.first().addClass('is-active');
+    }
+  },
+
   @on(keyUp('ArrowUp'))
   onArrowUp() {
     let $current = this.$('.is-active');
@@ -85,23 +111,5 @@ export default Ember.Component.extend(EKMixin, {
   @on(keyUp('Escape'))
   onEscape() {
     this.get('close')();
-  },
-
-  @on('didInsertElement')
-  activateKeyboard() {
-    this.setProperties({
-      keyboardActivated: true,
-      keyboardFirstResponder: true
-    });
-  },
-
-  @on('didRender')
-  resetActiveItem() {
-    let $items = this.$('.js-tag-picker__list-item');
-    $items.removeClass('is-active');
-
-    if (this.get('inputValue')) {
-      $items.first().addClass('is-active');
-    }
   }
 });

@@ -27,15 +27,6 @@ export default Ember.Component.extend({
     }
   },
 
-  durationCountingTask: task(function* () {
-    this.resetDuration();
-
-    while (true) {
-      yield timeout(1000);
-      this.incrementProperty('duration');
-    }
-  }).restartable(),
-
   resetDuration() {
     let startedAt = this.get('timeEntry.startedAt');
     let duration = 0;
@@ -45,5 +36,14 @@ export default Ember.Component.extend({
     }
 
     this.set('duration', duration);
-  }
+  },
+
+  durationCountingTask: task(function* () {
+    this.resetDuration();
+
+    while (true) {
+      yield timeout(1000);
+      this.incrementProperty('duration');
+    }
+  }).restartable()
 });

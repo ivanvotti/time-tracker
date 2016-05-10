@@ -14,22 +14,6 @@ export default Ember.Component.extend({
     { to: 'window', attachment: 'together' }
   ],
 
-  initClickOutsideToClose() {
-    run.next(() => {
-      $(document).on('click.c-popover', (event) => {
-        let isInsideClick = $(event.target).closest('.c-popover').length;
-
-        if (!isInsideClick) {
-          this.attrs.close();
-        }
-      });
-    });
-  },
-
-  offClickOutsideToClose() {
-    $(document).off('click.c-popover');
-  },
-
   didInsertElement() {
     this._super(...arguments);
 
@@ -44,5 +28,21 @@ export default Ember.Component.extend({
     if (this.get('clickOutsideToClose')) {
       this.offClickOutsideToClose();
     }
+  },
+
+  initClickOutsideToClose() {
+    run.next(() => {
+      $(document).on('click.c-popover', (event) => {
+        let isInsideClick = $(event.target).closest('.c-popover').length;
+
+        if (!isInsideClick) {
+          this.attrs.close();
+        }
+      });
+    });
+  },
+
+  offClickOutsideToClose() {
+    $(document).off('click.c-popover');
   }
 });
