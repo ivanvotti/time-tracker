@@ -5,15 +5,13 @@ import { EKMixin, keyUp } from 'ember-keyboard';
 const { setDiff, sort } = Ember.computed;
 
 export default Ember.Component.extend(EKMixin, {
+  classNames: ['c-tag-picker__list'],
   tags: null,
   selectedTags: null,
   inputValue: null,
-
   tagsSorting: ['name'],
-  classNames: ['c-tag-picker__list'],
 
   availableTags: setDiff('tags', 'selectedTags'),
-
   sortedFilteredTags: sort('filteredTags', 'tagsSorting'),
 
   @computed('inputValue', 'availableTags.@each.name')

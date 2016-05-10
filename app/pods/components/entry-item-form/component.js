@@ -4,9 +4,8 @@ import { task } from 'ember-concurrency';
 const { empty, or } = Ember.computed;
 
 export default Ember.Component.extend({
-  timeEntry: null,
-
   tagName: '',
+  timeEntry: null,
 
   isFormInvalid: empty('entryName'),
   isDisabled: or('submitFormTask.isRunning', 'isFormInvalid'),

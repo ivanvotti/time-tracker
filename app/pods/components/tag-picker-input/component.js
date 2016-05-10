@@ -1,10 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['c-tag-picker__input-section'],
   inputValue: null,
   selectedTags: null,
-
-  classNames: ['c-tag-picker__input-section'],
 
   actions: {
     setInputValue(value) {

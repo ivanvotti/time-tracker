@@ -5,9 +5,8 @@ import { task, timeout } from 'ember-concurrency';
 import formatDuration from 'time-tracker/utils/format-duration';
 
 export default Ember.Component.extend({
-  timeEntry: null,
-
   tagName: '',
+  timeEntry: null,
   duration: 0,
 
   @computed('duration')

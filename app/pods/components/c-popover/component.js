@@ -9,10 +9,7 @@ export default Ember.Component.extend({
   targetAttachment: 'bottom center',
   offset: '-20px 0',
   clickOutsideToClose: false,
-
-  constraints: [
-    { to: 'window', attachment: 'together' }
-  ],
+  constraints: [{ to: 'window', attachment: 'together' }],
 
   didInsertElement() {
     this._super(...arguments);
