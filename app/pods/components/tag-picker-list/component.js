@@ -68,12 +68,12 @@ export default Component.extend(EKMixin, {
 
   @on(keyUp('ArrowUp'))
   onArrowUp() {
-    let $current = this.$('.is-active');
-    let $previous = $current.prev();
+    let $selectedItem = this.$('.is-active');
+    let $newSelectedItem = $selectedItem.prev();
 
-    if ($previous.length) {
-      $current.removeClass('is-active');
-      $previous
+    if ($newSelectedItem.length) {
+      $selectedItem.removeClass('is-active');
+      $newSelectedItem
         .addClass('is-active')
         .get(0)
         .scrollIntoViewIfNeeded(false);
@@ -82,27 +82,32 @@ export default Component.extend(EKMixin, {
 
   @on(keyUp('ArrowDown'))
   onArrowDown() {
-    let $current = this.$('.is-active');
-    let $next = $current.next();
+    let $selectedItem = this.$('.is-active');
+    let $newSelectedItem = $selectedItem.next();
 
-    if (!$current.length) {
+    if ($newSelectedItem.length) {
+      $selectedItem.removeClass('is-active');
+      $newSelectedItem
+        .addClass('is-active')
+        .get(0)
+        .scrollIntoViewIfNeeded(false);
+    } else if (!$selectedItem.length) {
       this.$('.js-tag-picker__list-item')
         .first()
-        .addClass('is-active')
-        .get(0)
-        .scrollIntoViewIfNeeded(false);
-    } else if ($next.length) {
-      $current.removeClass('is-active');
-      $next
-        .addClass('is-active')
-        .get(0)
-        .scrollIntoViewIfNeeded(false);
+        .addClass('is-active');
     }
   },
 
   @on(keyUp('Enter'))
   onEnter() {
-    this.$('.is-active').click();
+    let $selectedItem = this.$('.is-active');
+
+    if ($selectedItem.length) {
+      $selectedItem.click();
+      this.get('element').scrollTop = 0;
+    } else if (!this.get('inputValue')) {
+      this.attrs.emptyEnter();
+    }
   },
 
   @on(keyUp('Escape'))

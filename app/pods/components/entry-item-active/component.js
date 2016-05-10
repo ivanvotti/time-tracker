@@ -5,7 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 import formatDuration from 'time-tracker/utils/format-duration';
 
 export default Component.extend({
-  tagName: '',
+  classNames: ['c-time-entry', 'c-time-entry--active'],
   timeEntry: null,
   duration: 0,
 

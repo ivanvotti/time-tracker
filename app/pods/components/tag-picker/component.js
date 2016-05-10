@@ -68,6 +68,12 @@ export default Component.extend({
     addTag() {
       this.attrs.addTag(...arguments);
       this.resetInputValue();
+    },
+
+    emptyEnter() {
+      if (this.attrs.emptyEnter) {
+        this.attrs.emptyEnter();
+      }
     }
   }
 });
