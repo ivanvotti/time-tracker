@@ -1,12 +1,10 @@
-import Ember from 'ember';
-import DS from 'ember-data';
-import computed from 'ember-computed-decorators';
+import { empty, sort } from 'ember-computed';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
 import Model from 'ember-pouch/model';
+import computed from 'ember-computed-decorators';
 import moment from 'moment';
 import formatDuration from 'time-tracker/utils/format-duration';
-
-const { empty, sort } = Ember.computed;
-const { attr, hasMany } = DS;
 
 export default Model.extend({
   name: attr('string'),
@@ -15,10 +13,9 @@ export default Model.extend({
   endedAt: attr('date'),
   tags: hasMany('tag'),
 
-  isActive: empty('endedAt'),
-
   tagsSorting: ['name'],
   sortedTags: sort('tags', 'tagsSorting'),
+  isActive: empty('endedAt'),
 
   @computed('duration')
   durationDisplay(duration) {

@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import run from 'ember-runloop';
 
-const { run } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['c-time-entry'],
   classNameBindings: ['timeEntry.isActive:c-time-entry--active'],
   isEditing: false,

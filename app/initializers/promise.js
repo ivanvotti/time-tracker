@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { RSVP } = Ember;
+import RSVP from 'rsvp';
 
 /**
   Replace the native Promise object with the RSVP one

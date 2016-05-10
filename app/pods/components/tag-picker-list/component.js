@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import { setDiff, sort } from 'ember-computed';
 import computed, { on } from 'ember-computed-decorators';
 import { EKMixin, keyUp } from 'ember-keyboard';
 
-const { setDiff, sort } = Ember.computed;
-
-export default Ember.Component.extend(EKMixin, {
+export default Component.extend(EKMixin, {
   classNames: ['c-tag-picker__list'],
   tags: null,
   selectedTags: null,

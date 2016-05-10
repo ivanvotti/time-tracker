@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import run from 'ember-runloop';
+import $ from 'jquery';
 
-const { $, run } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
   target: null,
   attachment: 'top center',

@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import computed from 'ember-computed-decorators';
 import moment from 'moment';
 import { task, timeout } from 'ember-concurrency';
 import formatDuration from 'time-tracker/utils/format-duration';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
   timeEntry: null,
   duration: 0,

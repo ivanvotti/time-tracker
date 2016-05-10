@@ -1,7 +1,6 @@
-import DS from 'ember-data';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
 import Model from 'ember-pouch/model';
-
-const { attr, hasMany } = DS;
 
 export default Model.extend({
   name: attr('string'),

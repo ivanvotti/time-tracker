@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import computed from 'ember-computed-decorators';
 
-export default Ember.Component.extend({
+export default Component.extend({
   timeEntries: null,
 
   @computed('timeEntries.@each.isActive')

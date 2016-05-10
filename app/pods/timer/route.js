@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Route from 'ember-route';
+import RSVP from 'rsvp';
 import moment from 'moment';
 
-const { RSVP } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     return RSVP.hash({
       timeEntries: this.store.findAll('time-entry'),

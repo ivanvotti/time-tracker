@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import EmberObject from 'ember-object';
+import run from 'ember-runloop';
+import { empty, or, equal } from 'ember-computed';
 import { on } from 'ember-computed-decorators';
 import { task } from 'ember-concurrency';
 import { EKMixin, keyDown } from 'ember-keyboard';
+import $ from 'jquery';
 
-const { run } = Ember;
-const { empty, or, equal } = Ember.computed;
-
-export default Ember.Component.extend(EKMixin, {
+export default Component.extend(EKMixin, {
   tagName: '',
   currentField: null,
 
@@ -38,7 +39,7 @@ export default Ember.Component.extend(EKMixin, {
     let nextField = currentField === 'nameInput' ? 'tagPicker' : 'nameInput';
 
     if (nextField === 'nameInput') {
-      run(() => Ember.$('.js-timer-form-name-input').focus());
+      run(() => $('.js-timer-form-name-input').focus());
     }
 
     this.set('currentField', nextField);
@@ -66,7 +67,7 @@ export default Ember.Component.extend(EKMixin, {
       ));
 
       if (isNewTagNameUnique) {
-        let mockTag = new Ember.Object({ name: newTagName, isMock: true });
+        let mockTag = new EmberObject({ name: newTagName, isMock: true });
         entryTags.pushObject(mockTag);
       }
     },

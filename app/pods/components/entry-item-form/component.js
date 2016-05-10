@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import EmberObject from 'ember-object';
+import { empty, or } from 'ember-computed';
 import { task } from 'ember-concurrency';
 
-const { empty, or } = Ember.computed;
-
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
   timeEntry: null,
 
@@ -45,7 +45,7 @@ export default Ember.Component.extend({
       ));
 
       if (isNewTagNameUnique) {
-        let tagMock = new Ember.Object({ name: newTagName, isMock: true });
+        let tagMock = new EmberObject({ name: newTagName, isMock: true });
         entryTags.pushObject(tagMock);
       }
     },

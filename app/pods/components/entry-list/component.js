@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import { sort } from 'ember-computed';
 
-const { sort } = Ember.computed;
-
-export default Ember.Component.extend({
+export default Component.extend({
   timeEntries: null,
   timeEntriesSorting: ['startedAt:desc'],
 
