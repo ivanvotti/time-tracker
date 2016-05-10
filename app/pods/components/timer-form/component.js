@@ -1,6 +1,5 @@
 import Component from 'ember-component';
 import EmberObject from 'ember-object';
-import run from 'ember-runloop';
 import { empty, or, equal } from 'ember-computed';
 import { on } from 'ember-computed-decorators';
 import { task } from 'ember-concurrency';
@@ -39,7 +38,7 @@ export default Component.extend(EKMixin, {
     let nextField = currentField === 'nameInput' ? 'tagPicker' : 'nameInput';
 
     if (nextField === 'nameInput') {
-      run(() => $('.js-timer-form-name-input').focus());
+      $('.js-timer-form-name-input').focus();
     }
 
     this.set('currentField', nextField);

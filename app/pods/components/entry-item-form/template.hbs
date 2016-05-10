@@ -1,4 +1,4 @@
-{{#if isTagPickerOpen}}
+{{#if isTagPickerActive}}
   {{tag-picker
       target=(concat ".js-tag-picker-target-" elementId)
       tags=tags
@@ -6,24 +6,26 @@
       addTag=(action "addTagToEntry")
       removeTag=(action "removeTagFromEntry")
       createNewTag=(action "addNewTagToEntry")
-      close=(toggle-action "isTagPickerOpen" this)
+      close=(action "blurField" "tagPicker")
   }}
 {{/if}}
 
 <div class="c-time-entry__left-side">
   {{one-way-input
-      class="c-time-entry-form__input u-mar-right-s"
+      class=(concat "c-time-entry-form__input u-mar-right-s js-entry-form-name-input-" elementId)
       placeholder="What were you doing?"
       value=entryName
       update=(action (mut entryName))
       onenter=(perform submitFormTask)
+      focusIn=(action "focusField" "nameInput")
+      focusOut=(action "blurField" "nameInput")
   }}
 </div>
 
 <div class="c-time-entry__right-side">
   <button
     class="c-icon-btn c-icon-btn--light c-icon-btn--popover u-mar-right-s js-tag-picker-target-{{elementId}}"
-    {{action (toggle-action "isTagPickerOpen" this)}}
+    onclick={{action "focusField" "tagPicker"}}
   >
     <svg class="c-icon c-icon--20"><use xlink:href="#icon-tag-20"></use></svg>
   </button>
@@ -43,7 +45,7 @@
   </button>
 
   <button
-    class="c-btn c-btn--small c-btn--primary {{if isDisabled 'is-disabled'}}"
+    class="c-btn c-btn--small c-btn--primary {{if isSubmitDisabled 'is-disabled'}}"
     onclick={{perform submitFormTask}}
   >
     Save
