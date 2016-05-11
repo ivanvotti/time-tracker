@@ -18,6 +18,11 @@ module.exports = {
     'media-src': null
   },
 
+  pageTitle: {
+    prepend: true,
+    separator: ' · '
+  },
+
   emberPouch: {
     localDb: 'time-tracker'
   },
