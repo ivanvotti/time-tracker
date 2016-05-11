@@ -6,7 +6,7 @@ import { task } from 'ember-concurrency';
 import { EKMixin, keyDown } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
-  classNames: ['c-time-entry'],
+  classNames: ['c-entry'],
   isTagPickerActive: false,
   timeEntry: null,
 

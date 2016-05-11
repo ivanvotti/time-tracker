@@ -1,15 +1,15 @@
-.c-time-entry-list {
+.c-entry-list {
   margin-bottom: 26px;
 }
 
-.c-time-entry-list__header {
+.c-entry-list__header {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   padding: 0 8px;
 }
 
-.c-time-entry-list__title {
+.c-entry-list__title {
   margin-right: 16px;
 
   font-size: 18px;
@@ -17,7 +17,7 @@
   color: $color-gray;
 }
 
-.c-time-entry-list__duration {
+.c-entry-list__duration {
   padding: 0 8px;
 
   font-size: 12px;
