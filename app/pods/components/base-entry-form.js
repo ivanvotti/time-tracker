@@ -29,18 +29,41 @@ export default Component.extend(EKMixin, {
     // Should be implemented in the actual component.
   },
 
+  focusNameInput() {
+    this.$('.js-entry-form-name-input').focus();
+  },
+
+  enableKeyboard() {
+    this.set('keyboardActivated', true);
+  },
+
+  disableKeyboard() {
+    this.set('keyboardActivated', false);
+  },
+
+  toggleTagPicker() {
+    let isTagPickerActive = !this.get('isTagPickerActive');
+    this.set('isTagPickerActive', isTagPickerActive);
+
+    if (isTagPickerActive) {
+      this.enableKeyboard();
+    } else {
+      this.disableKeyboard();
+    }
+  },
+
   @on(keyDown('Tab'))
   onTab(event) {
     event.preventDefault();
 
     if (this.get('isTagPickerActive')) {
-      this.send('toggleTagPicker');
-      this.send('focusNameInput');
+      this.toggleTagPicker();
+      this.focusNameInput();
     } else {
       // Trigger the name input focusOut event, so its disableKeyboard action
       // is called before the enableKeyboard one.
       this.$('.js-entry-form-name-input').blur();
-      this.send('toggleTagPicker');
+      this.toggleTagPicker();
     }
   },
 
@@ -80,21 +103,19 @@ export default Component.extend(EKMixin, {
     },
 
     enableKeyboard() {
-      this.set('keyboardActivated', true);
+      this.enableKeyboard();
     },
 
     disableKeyboard() {
-      this.set('keyboardActivated', false);
+      this.disableKeyboard();
     },
 
     focusNameInput() {
-      this.$('.js-entry-form-name-input').focus();
+      this.focusNameInput();
     },
 
     toggleTagPicker() {
-      let isTagPickerActive = !this.get('isTagPickerActive');
-      this.set('isTagPickerActive', isTagPickerActive);
-      this.send(isTagPickerActive ? 'enableKeyboard' : 'disableKeyboard');
+      this.toggleTagPicker();
     }
   }
 });
