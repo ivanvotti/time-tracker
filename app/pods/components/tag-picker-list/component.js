@@ -5,39 +5,42 @@ import { EKMixin, keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
   classNames: ['c-tag-picker__list'],
-  tags: null,
+  allTags: null,
   selectedTags: null,
   inputValue: null,
   tagsSorting: ['name'],
 
-  availableTags: setDiff('tags', 'selectedTags'),
-  sortedFilteredTags: sort('filteredTags', 'tagsSorting'),
+  availableTags: setDiff('allTags', 'selectedTags'),
+  sortedFilteredTags: sort('filteredAvailableTags', 'tagsSorting'),
 
   @computed('inputValue', 'availableTags.@each.name')
-  filteredTags(inputValue, tags) {
+  filteredAvailableTags(inputValue, availableTags) {
     if (inputValue) {
       let upperInputValue = inputValue.toUpperCase();
 
-      return tags.filter((tag) => (
+      return availableTags.filter((tag) => (
         tag.get('name').toUpperCase().startsWith(upperInputValue)
       ));
     }
 
-    return tags;
+    return availableTags;
   },
 
-  @computed('inputValue', 'tags.[]')
-  canCreateTag(inputValue, tags) {
+  @computed('inputValue', 'allTags.[]', 'selectedTags.[]')
+  canCreateTag(inputValue, allTags, selectedTags) {
     if (!inputValue) {
       return false;
     }
 
     let upperInputValue = inputValue.toUpperCase();
-    let isTagNameUnique = !tags.any((tag) => (
+    let isTagNameUniqueInAll = !allTags.any((tag) => (
+      tag.get('name').toUpperCase() === upperInputValue
+    ));
+    let isTagNameUniqueInSelected = !selectedTags.any((tag) => (
       tag.get('name').toUpperCase() === upperInputValue
     ));
 
-    return isTagNameUnique;
+    return isTagNameUniqueInAll && isTagNameUniqueInSelected;
   },
 
   didRender() {

@@ -3,8 +3,8 @@ import run from 'ember-runloop';
 import $ from 'jquery';
 
 export default Component.extend({
-  target: null,
-  tags: null,
+  popoverTarget: null,
+  allTags: null,
   selectedTags: null,
   inputValue: null,
 
@@ -60,13 +60,14 @@ export default Component.extend({
       this.set('inputValue', value);
     },
 
-    createNewTag() {
-      this.attrs.createNewTag(...arguments);
+    createAndSelectTag() {
+      let newTag = this.attrs.createTag(this.get('inputValue'));
+      this.attrs.selectTag(newTag);
       this.resetInputValue();
     },
 
-    addTag() {
-      this.attrs.addTag(...arguments);
+    selectTag() {
+      this.attrs.selectTag(...arguments);
       this.resetInputValue();
     },
 

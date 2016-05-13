@@ -1,15 +1,15 @@
 <div class="o-wrap">
   {{timer-form
-      tags=tags
+      allTags=allTags
       submitForm=(action "startNewTimer")
   }}
 
   {{entry-list
       timeEntries=timeEntries
-      tags=tags
+      allTags=allTags
       stopEntry=stopEntry
       updateEntry=updateEntry
-      deleteEntry=deleteEntry
+      destroyEntry=destroyEntry
       restartEntry=(action "restartEntry")
   }}
 </div>

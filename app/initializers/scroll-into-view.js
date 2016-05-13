@@ -5,7 +5,7 @@
 
 export function initialize() {
   if (!Element.prototype.scrollIntoViewIfNeeded) {
-    Element.prototype.scrollIntoViewIfNeeded = function (isCentered) {
+    Element.prototype.scrollIntoViewIfNeeded = function(isCentered) {
       function isWithinBounds(value, min, max, extent) {
         if (isCentered === false || max <= value + extent && value <= min + extent) {
           return Math.min(max, Math.max(min, value));
@@ -54,8 +54,12 @@ export function initialize() {
 
       let elem = this;
       let parent = elem.parentNode;
-      let area = makeArea(this.offsetLeft, this.offsetTop,
-                          this.offsetWidth, this.offsetHeight);
+      let area = makeArea(
+        this.offsetLeft,
+        this.offsetTop,
+        this.offsetWidth,
+        this.offsetHeight
+      );
 
       while (parent instanceof HTMLElement) {
         let clientLeft = parent.offsetLeft + parent.clientLeft;

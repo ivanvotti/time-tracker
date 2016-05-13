@@ -17,13 +17,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let durationCountingTask = this.get('durationCountingTask');
-
-    if (this.get('timeEntry')) {
-      durationCountingTask.perform();
-    } else {
-      durationCountingTask.cancelAll();
-    }
+    this.get('durationCountingTask').perform();
   },
 
   resetDuration() {

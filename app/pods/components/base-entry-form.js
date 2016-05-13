@@ -81,17 +81,15 @@ export default Component.extend(EKMixin, {
   }).drop(),
 
   actions: {
-    addNewTagToEntry(newTagName) {
-      let entryTags = this.get('entryTags');
-      let upperNewTagName = newTagName.toUpperCase();
-      let isNewTagNameUnique = !entryTags.any((tag) => (
-        tag.get('name').toUpperCase() === upperNewTagName
-      ));
+    /**
+      createTag action only creates a tag mock. The actual tag will only be
+      created in the form consumer, if the form will be submitted.
 
-      if (isNewTagNameUnique) {
-        let tagMock = new EmberObject({ name: newTagName, isMock: true });
-        entryTags.pushObject(tagMock);
-      }
+      It expects that the newTagName is unique. The uniqueness should be
+      checked in the child component.
+    */
+    createTag(newTagName) {
+      return new EmberObject({ name: newTagName, isMock: true });
     },
 
     addTagToEntry(tag) {

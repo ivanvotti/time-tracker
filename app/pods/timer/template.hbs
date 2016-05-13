@@ -2,10 +2,10 @@
 
 {{timer-screen
     timeEntries=model.timeEntries
-    tags=model.tags
-    addNewEntry=(route-action "addNewEntry")
+    allTags=model.tags
+    createEntry=(route-action "createEntry")
     restartEntry=(route-action "restartEntry")
     stopEntry=(route-action "stopEntry")
     updateEntry=(route-action "updateEntry")
-    deleteEntry=(route-action "deleteEntry")
+    destroyEntry=(route-action "destroyEntry")
 }}

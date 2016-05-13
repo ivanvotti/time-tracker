@@ -1,7 +1,7 @@
 {{#each sortedFilteredTags as |tag|}}
   <div
     class="c-tag-picker__list-item js-tag-picker-list-item"
-    onclick={{action addTag tag}}
+    onclick={{action selectTag tag}}
   >
     <svg class="c-icon c-icon--15 c-tag-picker__list-icon"><use xlink:href="#icon-tag-15"></use></svg>
 
@@ -18,7 +18,7 @@
 {{#if canCreateTag}}
   <div
     class="c-tag-picker__list-item js-tag-picker-list-item"
-    onclick={{action createNewTag inputValue}}
+    onclick={{action createAndSelectTag}}
   >
     <svg class="c-icon c-icon--13 c-tag-picker__list-icon"><use xlink:href="#icon-plus-13"></use></svg>
 

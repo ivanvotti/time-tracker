@@ -1,3 +1,4 @@
+/* eslint quote-props: 0 */
 'use strict';
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
   'env': {
     'browser': true,
     'es6': true,
-    'node': false
+    'node': true
   },
 
   'parserOptions': {
@@ -34,8 +35,8 @@ module.exports = {
     'comma-dangle': 0,
     'prefer-arrow-callback': 0,
     'func-names': 0,
-    'space-before-function-paren': [0, {
-      'anonymous': 'always',
+    'space-before-function-paren': [2, {
+      'anonymous': 'never',
       'named': 'never'
     }],
     'prefer-rest-params': 0,

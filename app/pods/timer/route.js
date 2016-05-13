@@ -10,14 +10,6 @@ export default Route.extend({
     });
   },
 
-  async detachEntryTags(entry) {
-    let entryTags = await entry.get('tags');
-    let detachedTags = entryTags.toArray();
-    entryTags.removeObjects(detachedTags);
-
-    return RSVP.all(detachedTags.map((tag) => tag.save()));
-  },
-
   createTagsFromMocks(tagMocks) {
     return tagMocks.map((tag) => {
       if (tag.get('isMock')) {
@@ -28,9 +20,14 @@ export default Route.extend({
     });
   },
 
-  async updateEntryTags(entry, tagMocks) {
-    let entryTags = await entry.get('tags');
-    let formTags = this.createTagsFromMocks(tagMocks);
+  async detachEntryTags(entryTags) {
+    let detachedTags = entryTags.toArray();
+    entryTags.removeObjects(detachedTags);
+
+    return RSVP.all(detachedTags.map((tag) => tag.save()));
+  },
+
+  async updateEntryTags(entryTags, formTags) {
     let addedTags = formTags.filter((tag) => !entryTags.contains(tag));
     let removedTags = entryTags.filter((tag) => !formTags.contains(tag));
 
@@ -41,18 +38,37 @@ export default Route.extend({
   },
 
   actions: {
-    async addNewEntry(formData) {
-      let entryTags = this.createTagsFromMocks(formData.tags);
+    async createEntry(formData) {
       let newEntry = this.store.createRecord('time-entry', {
         name: formData.name,
         startedAt: new Date()
       });
-
       await newEntry.save();
-      newEntry.get('tags').addObjects(entryTags);
 
+      let entryTags = this.createTagsFromMocks(formData.tags);
+      newEntry.get('tags').addObjects(entryTags);
       await RSVP.all(entryTags.map((tag) => tag.save()));
+
       return newEntry.save();
+    },
+
+    async updateEntry(entry, formData) {
+      let entryTags = await entry.get('tags');
+      let formTags = this.createTagsFromMocks(formData.tags);
+      await this.updateEntryTags(entryTags, formTags);
+
+      entry.setProperties({
+        name: formData.name
+      });
+
+      return entry.save();
+    },
+
+    async destroyEntry(entry) {
+      let entryTags = await entry.get('tags');
+      await this.detachEntryTags(entryTags);
+
+      return entry.destroyRecord();
     },
 
     async restartEntry(sourceEntry) {
@@ -64,30 +80,21 @@ export default Route.extend({
       });
 
       await newEntry.save();
-      return RSVP.all(sourceTags.map((tag) => tag.save()));
+      await RSVP.all(sourceTags.map((tag) => tag.save()));
+
+      return newEntry;
     },
 
-    stopEntry(timeEntry) {
-      let startedAt = timeEntry.get('startedAt');
+    stopEntry(entry) {
+      let startedAt = entry.get('startedAt');
       let endedAt = new Date();
 
-      timeEntry.setProperties({
+      entry.setProperties({
         endedAt,
         duration: moment(endedAt).diff(startedAt, 'seconds')
       });
 
-      return timeEntry.save();
-    },
-
-    async updateEntry(timeEntry, formData) {
-      timeEntry.setProperties({ name: formData.name });
-      await this.updateEntryTags(timeEntry, formData.tags);
-      return timeEntry.save();
-    },
-
-    async deleteEntry(timeEntry) {
-      await this.detachEntryTags(timeEntry);
-      return timeEntry.destroyRecord();
+      return entry.save();
     }
   }
 });

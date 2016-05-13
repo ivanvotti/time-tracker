@@ -17,7 +17,7 @@ export default Component.extend({
         await this.attrs.stopEntry(activeTimeEntry);
       }
 
-      return this.attrs.addNewEntry(newEntryName);
+      return this.attrs.createEntry(newEntryName);
     },
 
     async restartEntry(timeEntry) {

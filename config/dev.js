@@ -17,8 +17,8 @@ module.exports = {
   contentSecurityPolicy: {
     'connect-src': [
       "'self'",
-      "http://localhost:5984",
-      "http://localhost:49154"
+      'http://localhost:5984',
+      'http://localhost:49154'
     ]
   },
 

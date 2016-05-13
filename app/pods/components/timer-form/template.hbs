@@ -1,12 +1,12 @@
 {{#if isTagPickerActive}}
   {{#ember-wormhole to="modals"}}
     {{tag-picker
-        target=(concat ".js-tag-picker-target-" elementId)
-        tags=tags
+        popoverTarget=(concat ".js-tag-picker-target-" elementId)
+        allTags=allTags
         selectedTags=entryTags
-        addTag=(action "addTagToEntry")
-        removeTag=(action "removeTagFromEntry")
-        createNewTag=(action "addNewTagToEntry")
+        selectTag=(action "addTagToEntry")
+        deselectTag=(action "removeTagFromEntry")
+        createTag=(action "createTag")
         emptyEnter=(pipe-action (action "toggleTagPicker") (action "focusNameInput"))
         close=(action "toggleTagPicker")
     }}

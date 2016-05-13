@@ -1,10 +1,10 @@
 {{#if isEditing}}
   {{entry-item-form
       timeEntry=timeEntry
-      tags=tags
+      allTags=allTags
       submitForm=updateEntry
       allTags=allTags
-      deleteEntry=deleteEntry
+      destroyEntry=destroyEntry
       closeForm=(action "stopEditing")
   }}
 {{else if timeEntry.isActive}}

@@ -40,7 +40,7 @@ module.exports = function(environment) {
   if (!isTest) {
     try {
       merge(config, require('./local'));
-    } catch(e) {}
+    } catch (e) {/* ignore if there's no local.js file */}
   }
 
   return config;

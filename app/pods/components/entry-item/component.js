@@ -5,6 +5,10 @@ export default Component.extend({
   isEditing: false,
 
   doubleClick() {
+    this.startEditing();
+  },
+
+  startEditing() {
     this.set('isEditing', true);
     run.scheduleOnce('afterRender', () => this.$('input').focus());
   },
