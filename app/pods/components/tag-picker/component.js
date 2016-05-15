@@ -71,9 +71,9 @@ export default Component.extend({
       this.resetInputValue();
     },
 
-    emptyEnter() {
-      if (this.attrs.emptyEnter) {
-        this.attrs.emptyEnter();
+    onEmptyEnter() {
+      if (this.attrs.onEmptyEnter) {
+        this.attrs.onEmptyEnter();
       }
     }
   }

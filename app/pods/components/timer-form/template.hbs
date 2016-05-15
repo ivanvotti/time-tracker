@@ -7,7 +7,8 @@
         selectTag=(action "addTagToEntry")
         deselectTag=(action "removeTagFromEntry")
         createTag=(action "createTag")
-        emptyEnter=(pipe-action (action "toggleTagPicker") (action "focusNameInput"))
+        onEscape=(pipe-action (action "toggleTagPicker") (action "focusNameInput"))
+        onEmptyEnter=(pipe-action (action "toggleTagPicker") (action "focusNameInput"))
         close=(action "toggleTagPicker")
     }}
   {{/ember-wormhole}}

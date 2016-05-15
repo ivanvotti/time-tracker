@@ -109,12 +109,12 @@ export default Component.extend(EKMixin, {
       $selectedItem.click();
       this.get('element').scrollTop = 0;
     } else if (!this.get('inputValue')) {
-      this.attrs.emptyEnter();
+      this.attrs.onEmptyEnter();
     }
   },
 
   @on(keyUp('Escape'))
   onEscape() {
-    this.get('close')();
+    this.attrs.onEscape();
   }
 });
