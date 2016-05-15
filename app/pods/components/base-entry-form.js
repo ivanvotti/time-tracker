@@ -69,6 +69,7 @@ export default Component.extend(EKMixin, {
 
   submitFormTask: task(function* () {
     if (this.get('isFormInvalid')) {
+      this.focusNameInput();
       return;
     }
 
