@@ -1,4 +1,5 @@
 import Route from 'ember-route';
+import get from 'ember-metal/get';
 import set, { setProperties } from 'ember-metal/set';
 import RSVP from 'rsvp';
 import moment from 'moment';
@@ -13,8 +14,8 @@ export default Route.extend({
 
   createTagsFromMocks(tagMocks) {
     return tagMocks.map((tag) => {
-      if (tag.get('isMock')) {
-        return this.store.createRecord('tag', { name: tag.get('name') });
+      if (get(tag, 'isMock')) {
+        return this.store.createRecord('tag', { name: get(tag, 'name') });
       }
 
       return tag;
@@ -47,14 +48,14 @@ export default Route.extend({
       await newEntry.save();
 
       let entryTags = this.createTagsFromMocks(formData.tags);
-      newEntry.get('tags').addObjects(entryTags);
+      get(newEntry, 'tags').addObjects(entryTags);
       await RSVP.all(entryTags.map((tag) => tag.save()));
 
       return newEntry.save();
     },
 
     async updateEntry(entry, formData) {
-      let entryTags = await entry.get('tags');
+      let entryTags = await get(entry, 'tags');
       let formTags = this.createTagsFromMocks(formData.tags);
 
       await this.updateEntryTags(entryTags, formTags);
@@ -64,16 +65,16 @@ export default Route.extend({
     },
 
     async destroyEntry(entry) {
-      let entryTags = await entry.get('tags');
+      let entryTags = await get(entry, 'tags');
       await this.detachEntryTags(entryTags);
 
       return entry.destroyRecord();
     },
 
     async restartEntry(sourceEntry) {
-      let sourceTags = await sourceEntry.get('tags');
+      let sourceTags = await get(sourceEntry, 'tags');
       let newEntry = this.store.createRecord('time-entry', {
-        name: sourceEntry.get('name'),
+        name: get(sourceEntry, 'name'),
         tags: sourceTags,
         startedAt: new Date()
       });
@@ -85,7 +86,7 @@ export default Route.extend({
     },
 
     stopEntry(entry) {
-      let startedAt = entry.get('startedAt');
+      let startedAt = get(entry, 'startedAt');
       let endedAt = new Date();
 
       setProperties(entry, {

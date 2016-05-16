@@ -1,3 +1,4 @@
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import BaseEntryFormComponent from '../base-entry-form';
 
@@ -7,10 +8,10 @@ export default BaseEntryFormComponent.extend({
 
   initFormValues() {
     let entryTags = [];
-    set(this, 'entryName', this.get('timeEntry.name'));
+    set(this, 'entryName', get(this, 'timeEntry.name'));
     set(this, 'entryTags', entryTags);
 
-    this.get('timeEntry.tags')
+    get(this, 'timeEntry.tags')
       .then((tags) => entryTags.addObjects(tags));
   },
 

@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import run from 'ember-runloop';
 import $ from 'jquery';
 
@@ -14,7 +15,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    if (this.get('clickOutsideToClose')) {
+    if (get(this, 'clickOutsideToClose')) {
       this.initClickOutsideToClose();
     }
   },
@@ -22,7 +23,7 @@ export default Component.extend({
   willDestroyElement() {
     this._super(...arguments);
 
-    if (this.get('clickOutsideToClose')) {
+    if (get(this, 'clickOutsideToClose')) {
       this.offClickOutsideToClose();
     }
   },

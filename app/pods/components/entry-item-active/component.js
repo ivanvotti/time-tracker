@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed from 'ember-computed-decorators';
 import moment from 'moment';
@@ -18,11 +19,11 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get('durationCountingTask').perform();
+    get(this, 'durationCountingTask').perform();
   },
 
   resetDuration() {
-    let startedAt = this.get('timeEntry.startedAt');
+    let startedAt = get(this, 'timeEntry.startedAt');
     let duration = 0;
 
     if (startedAt) {

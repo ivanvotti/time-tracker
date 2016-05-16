@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import { setProperties } from 'ember-metal/set';
 import { setDiff, sort } from 'ember-computed';
 import computed, { on } from 'ember-computed-decorators';
@@ -20,7 +21,7 @@ export default Component.extend(EKMixin, {
       let upperInputValue = inputValue.toUpperCase();
 
       return availableTags.filter((tag) => (
-        tag.get('name').toUpperCase().startsWith(upperInputValue)
+        get(tag, 'name').toUpperCase().startsWith(upperInputValue)
       ));
     }
 
@@ -35,10 +36,10 @@ export default Component.extend(EKMixin, {
 
     let upperInputValue = inputValue.toUpperCase();
     let isTagNameUniqueInAll = !allTags.any((tag) => (
-      tag.get('name').toUpperCase() === upperInputValue
+      get(tag, 'name').toUpperCase() === upperInputValue
     ));
     let isTagNameUniqueInSelected = !selectedTags.any((tag) => (
-      tag.get('name').toUpperCase() === upperInputValue
+      get(tag, 'name').toUpperCase() === upperInputValue
     ));
 
     return isTagNameUniqueInAll && isTagNameUniqueInSelected;
@@ -65,7 +66,7 @@ export default Component.extend(EKMixin, {
     let $items = this.$('.js-tag-picker-list-item');
     $items.removeClass('is-active');
 
-    if (this.get('inputValue')) {
+    if (get(this, 'inputValue')) {
       $items.first().addClass('is-active');
     }
   },
@@ -108,8 +109,8 @@ export default Component.extend(EKMixin, {
 
     if ($selectedItem.length) {
       $selectedItem.click();
-      this.get('element').scrollTop = 0;
-    } else if (!this.get('inputValue')) {
+      get(this, 'element').scrollTop = 0;
+    } else if (!get(this, 'inputValue')) {
       this.attrs.onEmptyEnter();
     }
   },

@@ -1,6 +1,6 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import EmberObject from 'ember-object';
 import { empty, or } from 'ember-computed';
 import { on } from 'ember-computed-decorators';
 import { task } from 'ember-concurrency';
@@ -23,11 +23,11 @@ export default Component.extend(EKMixin, {
   },
 
   initFormValues() {
-    // Should be implemented in the actual component.
+    /* Should be implemented in the actual component. */
   },
 
   onFormSubmitted() {
-    // Should be implemented in the actual component.
+    /* Should be implemented in the actual component. */
   },
 
   focusNameInput() {
@@ -43,7 +43,7 @@ export default Component.extend(EKMixin, {
   },
 
   toggleTagPicker() {
-    let isTagPickerActive = !this.get('isTagPickerActive');
+    let isTagPickerActive = !get(this, 'isTagPickerActive');
     set(this, 'isTagPickerActive', isTagPickerActive);
 
     if (isTagPickerActive) {
@@ -57,7 +57,7 @@ export default Component.extend(EKMixin, {
   onTab(event) {
     event.preventDefault();
 
-    if (this.get('isTagPickerActive')) {
+    if (get(this, 'isTagPickerActive')) {
       this.toggleTagPicker();
       this.focusNameInput();
     } else {
@@ -69,14 +69,14 @@ export default Component.extend(EKMixin, {
   },
 
   submitFormTask: task(function* () {
-    if (this.get('isFormInvalid')) {
+    if (get(this, 'isFormInvalid')) {
       this.focusNameInput();
       return;
     }
 
     yield this.attrs.submitForm({
-      name: this.get('entryName'),
-      tags: this.get('entryTags')
+      name: get(this, 'entryName'),
+      tags: get(this, 'entryTags')
     });
 
     this.onFormSubmitted();
@@ -91,15 +91,15 @@ export default Component.extend(EKMixin, {
       checked in the child component.
     */
     createTag(newTagName) {
-      return new EmberObject({ name: newTagName, isMock: true });
+      return { name: newTagName, isMock: true };
     },
 
     addTagToEntry(tag) {
-      this.get('entryTags').pushObject(tag);
+      get(this, 'entryTags').pushObject(tag);
     },
 
     removeTagFromEntry(tag) {
-      this.get('entryTags').removeObject(tag);
+      get(this, 'entryTags').removeObject(tag);
     },
 
     enableKeyboard() {

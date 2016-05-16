@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import computed from 'ember-computed-decorators';
 
 export default Component.extend({
@@ -11,7 +12,7 @@ export default Component.extend({
 
   actions: {
     async startNewTimer(newEntryName) {
-      let activeTimeEntry = this.get('activeTimeEntry');
+      let activeTimeEntry = get(this, 'activeTimeEntry');
 
       if (activeTimeEntry) {
         await this.attrs.stopEntry(activeTimeEntry);
@@ -21,7 +22,7 @@ export default Component.extend({
     },
 
     async restartEntry(timeEntry) {
-      let activeTimeEntry = this.get('activeTimeEntry');
+      let activeTimeEntry = get(this, 'activeTimeEntry');
 
       if (activeTimeEntry) {
         await this.attrs.stopEntry(activeTimeEntry);

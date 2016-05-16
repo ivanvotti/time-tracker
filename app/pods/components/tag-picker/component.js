@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import run from 'ember-runloop';
 import $ from 'jquery';
@@ -35,7 +36,7 @@ export default Component.extend({
 
   initClickOutsideToClose() {
     run.next(() => {
-      let elementId = this.get('elementId');
+      let elementId = get(this, 'elementId');
       $(document).on(`click.tag-picker-${elementId}`, (event) => {
         let $target = $(event.target);
         // We have to check the class name of the target as well,
@@ -52,7 +53,7 @@ export default Component.extend({
   },
 
   offClickOutsideToClose() {
-    let elementId = this.get('elementId');
+    let elementId = get(this, 'elementId');
     $(document).off(`click.tag-picker-${elementId}`);
   },
 
@@ -62,7 +63,7 @@ export default Component.extend({
     },
 
     createAndSelectTag() {
-      let newTag = this.attrs.createTag(this.get('inputValue'));
+      let newTag = this.attrs.createTag(get(this, 'inputValue'));
       this.attrs.selectTag(newTag);
       this.resetInputValue();
     },

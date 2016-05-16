@@ -1,4 +1,5 @@
 import set from 'ember-metal/set';
+import get from 'ember-metal/get';
 import { Adapter } from 'ember-pouch';
 import PouchDB from 'pouchdb';
 import config from 'time-tracker/config/environment';
@@ -28,10 +29,10 @@ export default Adapter.extend({
 
   // Load all records into memory as they arrive.
   unloadedDocumentChanged(obj) {
-    let store = this.get('store');
+    let store = get(this, 'store');
     let recordTypeName = this.getRecordTypeName(store.modelFor(obj.type));
 
-    this.get('db').rel.find(recordTypeName, obj.id).then(function(doc) {
+    get(this, 'db').rel.find(recordTypeName, obj.id).then(function(doc) {
       store.pushPayload(recordTypeName, doc);
     });
   }
