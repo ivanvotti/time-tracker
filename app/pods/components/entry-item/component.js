@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import set from 'ember-metal/set';
 import run from 'ember-runloop';
 
 export default Component.extend({
@@ -9,13 +10,13 @@ export default Component.extend({
   },
 
   startEditing() {
-    this.set('isEditing', true);
+    set(this, 'isEditing', true);
     run.scheduleOnce('afterRender', () => this.$('input').focus());
   },
 
   actions: {
     stopEditing() {
-      this.set('isEditing', false);
+      set(this, 'isEditing', false);
     }
   }
 });

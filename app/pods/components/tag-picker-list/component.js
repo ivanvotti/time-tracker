@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import { setProperties } from 'ember-metal/set';
 import { setDiff, sort } from 'ember-computed';
 import computed, { on } from 'ember-computed-decorators';
 import { EKMixin, keyUp } from 'ember-keyboard';
@@ -54,7 +55,7 @@ export default Component.extend(EKMixin, {
   },
 
   activateKeyboard() {
-    this.setProperties({
+    setProperties(this, {
       keyboardActivated: true,
       keyboardFirstResponder: true
     });

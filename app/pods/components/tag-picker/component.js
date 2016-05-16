@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import set from 'ember-metal/set';
 import run from 'ember-runloop';
 import $ from 'jquery';
 
@@ -24,7 +25,7 @@ export default Component.extend({
   },
 
   resetInputValue() {
-    this.set('inputValue', null);
+    set(this, 'inputValue', null);
     this.focusInput();
   },
 
@@ -57,7 +58,7 @@ export default Component.extend({
 
   actions: {
     setInputValue(value) {
-      this.set('inputValue', value);
+      set(this, 'inputValue', value);
     },
 
     createAndSelectTag() {

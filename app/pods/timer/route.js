@@ -1,4 +1,5 @@
 import Route from 'ember-route';
+import set, { setProperties } from 'ember-metal/set';
 import RSVP from 'rsvp';
 import moment from 'moment';
 
@@ -55,11 +56,9 @@ export default Route.extend({
     async updateEntry(entry, formData) {
       let entryTags = await entry.get('tags');
       let formTags = this.createTagsFromMocks(formData.tags);
-      await this.updateEntryTags(entryTags, formTags);
 
-      entry.setProperties({
-        name: formData.name
-      });
+      await this.updateEntryTags(entryTags, formTags);
+      set(entry, 'name', formData.name);
 
       return entry.save();
     },
@@ -89,7 +88,7 @@ export default Route.extend({
       let startedAt = entry.get('startedAt');
       let endedAt = new Date();
 
-      entry.setProperties({
+      setProperties(entry, {
         endedAt,
         duration: moment(endedAt).diff(startedAt, 'seconds')
       });

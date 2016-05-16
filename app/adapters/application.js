@@ -1,3 +1,4 @@
+import set from 'ember-metal/set';
 import { Adapter } from 'ember-pouch';
 import PouchDB from 'pouchdb';
 import config from 'time-tracker/config/environment';
@@ -22,7 +23,7 @@ function setupDb() {
 export default Adapter.extend({
   init() {
     this._super(...arguments);
-    this.set('db', setupDb());
+    set(this, 'db', setupDb());
   },
 
   // Load all records into memory as they arrive.

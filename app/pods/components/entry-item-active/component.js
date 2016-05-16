@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import set from 'ember-metal/set';
 import computed from 'ember-computed-decorators';
 import moment from 'moment';
 import { task, timeout } from 'ember-concurrency';
@@ -28,7 +29,7 @@ export default Component.extend({
       duration = moment().diff(startedAt, 'seconds');
     }
 
-    this.set('duration', duration);
+    set(this, 'duration', duration);
   },
 
   durationCountingTask: task(function* () {

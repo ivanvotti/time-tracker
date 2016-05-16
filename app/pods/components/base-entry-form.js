@@ -1,4 +1,5 @@
 import Component from 'ember-component';
+import set from 'ember-metal/set';
 import EmberObject from 'ember-object';
 import { empty, or } from 'ember-computed';
 import { on } from 'ember-computed-decorators';
@@ -13,7 +14,7 @@ export default Component.extend(EKMixin, {
 
   init() {
     this._super(...arguments);
-    this.set('keyboardFirstResponder', true);
+    set(this, 'keyboardFirstResponder', true);
   },
 
   didReceiveAttrs() {
@@ -34,16 +35,16 @@ export default Component.extend(EKMixin, {
   },
 
   enableKeyboard() {
-    this.set('keyboardActivated', true);
+    set(this, 'keyboardActivated', true);
   },
 
   disableKeyboard() {
-    this.set('keyboardActivated', false);
+    set(this, 'keyboardActivated', false);
   },
 
   toggleTagPicker() {
     let isTagPickerActive = !this.get('isTagPickerActive');
-    this.set('isTagPickerActive', isTagPickerActive);
+    set(this, 'isTagPickerActive', isTagPickerActive);
 
     if (isTagPickerActive) {
       this.enableKeyboard();
