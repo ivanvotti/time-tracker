@@ -15,13 +15,13 @@ module.exports = function(defaults) {
       nodeSass: require('node-sass')
     },
 
-    svgjar: {
+    svgJar: {
+      sourceDirs: ['icons'],
       prefix: 'icon-',
       ajaxing: true,
       optimize: {
         plugins: [
           { removeTitle: true },
-          { removeDesc: true },
           { removeAttrs: { attrs: '(fill|fill-rule)' } }
         ]
       }
