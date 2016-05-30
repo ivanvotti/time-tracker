@@ -16,9 +16,9 @@ module.exports = function(defaults) {
     },
 
     svgJar: {
+      strategy: 'symbol',
       sourceDirs: ['icons'],
-      prefix: 'icon-',
-      ajaxing: true,
+      symbolsPrefix: 'icon-',
       optimize: {
         plugins: [
           { removeTitle: true },

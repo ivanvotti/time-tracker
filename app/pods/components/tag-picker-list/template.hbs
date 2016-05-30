@@ -3,7 +3,7 @@
     class="c-tag-picker__list-item js-tag-picker-list-item"
     onclick={{action selectTag tag}}
   >
-    <svg class="c-icon c-icon--15 c-tag-picker__list-icon"><use xlink:href="#icon-tag-15" /></svg>
+    {{svg-jar "#icon-tag-15" class="c-icon c-icon--15 c-tag-picker__list-icon"}}
 
     <div class="c-tag-picker__list-text">
       {{tag.name}}
@@ -20,7 +20,7 @@
     class="c-tag-picker__list-item js-tag-picker-list-item"
     onclick={{action createAndSelectTag}}
   >
-    <svg class="c-icon c-icon--13 c-tag-picker__list-icon"><use xlink:href="#icon-plus-13" /></svg>
+    {{svg-jar "#icon-plus-13" class="c-icon c-icon--13 c-tag-picker__list-icon"}}
 
     <div class="c-tag-picker__list-text">
       Add {{inputValue}}...
