@@ -4,17 +4,17 @@
       allTags=allTags
       submitForm=updateEntry
       allTags=allTags
-      destroyEntry=destroyEntry
+      destroyEntry=(action destroyEntry)
       closeForm=(action "stopEditing")
   }}
 {{else if timeEntry.isActive}}
   {{entry-item-active
       timeEntry=timeEntry
-      stopEntry=stopEntry
+      stopEntry=(action stopEntry)
   }}
 {{else}}
   {{entry-item-ended
       timeEntry=timeEntry
-      restartEntry=restartEntry
+      restartEntry=(action restartEntry)
   }}
 {{/if}}

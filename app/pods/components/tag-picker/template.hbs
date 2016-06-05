@@ -3,7 +3,7 @@
     {{tag-picker-input
         inputValue=inputValue
         selectedTags=selectedTags
-        deselectTag=deselectTag
+        deselectTag=(action deselectTag)
         setInputValue=(action "setInputValue")
     }}
 
@@ -11,7 +11,7 @@
         inputValue=inputValue
         allTags=allTags
         selectedTags=selectedTags
-        onEscape=this.attrs.onEscape
+        onEscape=(action onEscape)
         selectTag=(action "selectTag")
         createAndSelectTag=(action "createAndSelectTag")
         onEmptyEnter=(action "onEmptyEnter")
